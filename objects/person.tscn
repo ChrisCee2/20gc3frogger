@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dk7k5h44nry4"]
 
-[ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://move_controller.tscn" id="1_0pife"]
-[ext_resource type="Script" uid="uid://bg7783t6eijoi" path="res://person.gd" id="1_hncb1"]
+[ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="1_0pife"]
+[ext_resource type="Script" uid="uid://bg7783t6eijoi" path="res://objects/person.gd" id="1_hncb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
 size = Vector2(32, 32)
