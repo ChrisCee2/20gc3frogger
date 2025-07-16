@@ -9,7 +9,7 @@ size = Vector2(32, 32)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_onrkg"]
 
-[node name="Player" type="AnimatableBody2D"]
+[node name="Player" type="Area2D"]
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -26,4 +26,4 @@ wait_time = 0.1
 one_shot = true
 
 [node name="MoveController" parent="." node_paths=PackedStringArray("object") instance=ExtResource("3_i3pqv")]
-object = NodePath("..")
+object = NodePath("")

@@ -1,4 +1,4 @@
-class_name Player extends AnimatableBody2D
+class_name Player extends Area2D
 
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
