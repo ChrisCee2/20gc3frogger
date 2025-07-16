@@ -1,4 +1,4 @@
-class_name Person extends StaticBody2D
+class_name Person extends Area2D
 
 @onready var move_controller: MoveController = $MoveController
 

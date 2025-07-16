@@ -1,5 +1,7 @@
 class_name Player extends Area2D
 
+signal player_fail
+
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
 @onready var move_interval: float = 0.0
@@ -12,6 +14,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	move_controller.update()
+	check_collisions()
 
 func _physics_process(delta: float) -> void:
 	move()
@@ -26,3 +29,9 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if move_direction != Vector2.ZERO:
 		move_buffer = move_direction
 		move()
+
+func check_collisions() -> void:
+	var colliding_areas: Array[Area2D] = get_overlapping_areas()
+	for area in colliding_areas:
+		if area is Person:
+			player_fail.emit()

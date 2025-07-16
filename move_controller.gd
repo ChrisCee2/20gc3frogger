@@ -3,7 +3,7 @@ class_name MoveController extends Node
 @onready var animation_timer: Timer = $AnimationTimer
 @onready var move_timer: Timer = $MoveTimer
 
-@export var object: PhysicsBody2D
+@export var object: CollisionObject2D
 @export_range(0, 10) var move_interval: float = 0.0 # In seconds
 
 var animation_interval: float = 0.025
