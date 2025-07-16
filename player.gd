@@ -1,9 +1,7 @@
 class_name Player extends AnimatableBody2D
 
-@export var move_amount: float = 32
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
-@onready var timer: Timer = $Timer #TODO: Eventually switch out with animation player, allow when anim ends
 @onready var move_interval: float = 0.0
 
 var desired_position = global_position
@@ -20,7 +18,6 @@ func _physics_process(delta: float) -> void:
 
 func move() -> void:
 	if move_controller.can_move() and move_buffer != Vector2.ZERO:
-		print(move_buffer)
 		move_controller.move(move_buffer)
 		move_buffer = Vector2.ZERO
 
