@@ -25,7 +25,8 @@ func move(direction: Vector2) -> void:
 		return
 	object.global_position = desired_position
 	update_position(direction * move_amount)
-	move_timer.start(move_interval)
+	if move_interval > 0:
+		move_timer.start(move_interval)
 
 func update_position(offset: Vector2) -> void:
 	desired_position += offset

@@ -13,6 +13,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	update()
+	move_controller.update()
 
 func update() -> void:
 	move_controller.move(move_direction)
