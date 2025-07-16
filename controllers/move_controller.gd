@@ -1,5 +1,7 @@
 class_name MoveController extends Node
 
+signal moved
+
 @onready var animation_timer: Timer = $AnimationTimer
 @onready var move_timer: Timer = $MoveTimer
 
@@ -28,9 +30,13 @@ func move(direction: Vector2) -> void:
 	if move_interval > 0:
 		move_timer.start(move_interval)
 
+func shift(direction: Vector2):
+	update_position(direction * move_amount)
+
 func update_position(offset: Vector2) -> void:
 	desired_position += offset
 	animation_timer.start(animation_interval)
+	moved.emit()
 
 func update() -> void:
 	object.global_position = object.global_position.lerp(
