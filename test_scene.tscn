@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://j3ka2q4kgsok"]
+
+[ext_resource type="PackedScene" uid="uid://cmrxs55rkgib0" path="res://objects/player.tscn" id="1_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://dk7k5h44nry4" path="res://objects/person.tscn" id="2_sasra"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Person" parent="." instance=ExtResource("2_sasra")]
+position = Vector2(360, 0)
+
+[node name="Player" parent="." instance=ExtResource("1_ia1lp")]
