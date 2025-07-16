@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk7k5h44nry4"]
+[gd_scene load_steps=5 format=3 uid="uid://dk7k5h44nry4"]
 
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://move_controller.tscn" id="1_0pife"]
+[ext_resource type="Script" uid="uid://bg7783t6eijoi" path="res://person.gd" id="1_hncb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
 size = Vector2(32, 32)
@@ -8,6 +9,7 @@ size = Vector2(32, 32)
 [sub_resource type="CanvasTexture" id="CanvasTexture_7822p"]
 
 [node name="Person" type="StaticBody2D"]
+script = ExtResource("1_hncb1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_24jkt")
@@ -16,5 +18,5 @@ shape = SubResource("RectangleShape2D_24jkt")
 scale = Vector2(32, 32)
 texture = SubResource("CanvasTexture_7822p")
 
-[node name="MoveController" parent="." instance=ExtResource("1_0pife")]
-move_interval = null
+[node name="MoveController" parent="." node_paths=PackedStringArray("object") instance=ExtResource("1_0pife")]
+object = NodePath("..")
