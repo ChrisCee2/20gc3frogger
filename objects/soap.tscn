@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="2_0f703"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
-size = Vector2(64, 32)
+size = Vector2(63, 31)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7822p"]
 

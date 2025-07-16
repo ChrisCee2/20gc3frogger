@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bg7783t6eijoi" path="res://objects/person.gd" id="1_hncb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
-size = Vector2(32, 32)
+size = Vector2(31, 31)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7822p"]
 
