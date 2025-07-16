@@ -10,6 +10,7 @@ size = Vector2(32, 32)
 [sub_resource type="CanvasTexture" id="CanvasTexture_onrkg"]
 
 [node name="Player" type="Area2D"]
+z_index = 100
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
