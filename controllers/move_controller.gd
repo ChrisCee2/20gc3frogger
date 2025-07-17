@@ -38,9 +38,10 @@ func update_position(offset: Vector2) -> void:
 	animation_timer.start(animation_interval)
 	moved.emit()
 
-func update_absolute_position(new_position: Vector2) -> void:
-	object.global_position = new_position
+func teleport(new_position: Vector2) -> void:
+	animation_timer.stop()
 	desired_position = new_position
+	object.global_position = desired_position
 
 func update() -> void:
 	object.global_position = object.global_position.lerp(

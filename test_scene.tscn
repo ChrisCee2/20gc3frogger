@@ -10,6 +10,9 @@
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="PlayArea" parent="." instance=ExtResource("5_2nij2")]
+size = Vector2(640, 640)
+
 [node name="Person" parent="." instance=ExtResource("2_sasra")]
 position = Vector2(360, 0)
 
@@ -17,8 +20,6 @@ position = Vector2(360, 0)
 
 [node name="Soap" parent="." instance=ExtResource("3_sasra")]
 
-[node name="GameController" parent="." node_paths=PackedStringArray("player") instance=ExtResource("4_coq8p")]
+[node name="GameController" parent="." node_paths=PackedStringArray("play_area", "player") instance=ExtResource("4_coq8p")]
+play_area = NodePath("../PlayArea")
 player = NodePath("../Player")
-
-[node name="PlayArea" parent="." instance=ExtResource("5_2nij2")]
-size = Vector2(640, 640)

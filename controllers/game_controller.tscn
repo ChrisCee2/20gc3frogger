@@ -4,3 +4,6 @@
 
 [node name="GameController" type="Node"]
 script = ExtResource("1_84mqp")
+
+[node name="ResetTimer" type="Timer" parent="."]
+one_shot = true
