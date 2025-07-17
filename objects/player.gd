@@ -34,9 +34,14 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func check_collisions() -> void:
 	var colliding_areas: Array[Area2D] = get_overlapping_areas()
+	var should_fail = true
 	for area in colliding_areas:
+		if area is PlayArea:
+			should_fail = false
 		if area is Person:
-			fail.emit()
+			fail_player()
+	if should_fail:
+		fail_player()
 
 func teleport(new_position: Vector2) -> void:
 	move_controller.update_absolute_position(new_position)
@@ -46,3 +51,7 @@ func activate() -> void:
 
 func deactivate() -> void:
 	is_active = false
+
+func fail_player() -> void:
+	deactivate()
+	fail.emit()

@@ -9,8 +9,8 @@ func _ready() -> void:
 	player.fail.connect(_on_player_fail)
 
 func _on_player_fail() -> void:
-	lives -= 1
 	player.deactivate()
+	lives -= 1
 	# Should play fail animation and on signal of animation complete, force position
 	player.teleport(start_position)
 	player.activate()
