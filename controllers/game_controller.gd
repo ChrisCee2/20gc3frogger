@@ -28,13 +28,17 @@ func finish() -> void:
 	is_finished = true
 
 func _on_player_fail() -> void:
+	print("FAIL")
 	lives -= 1
 	player.hide()
 	if lives <= 0:
+		print("UOUOREWRWE")
 		finish()
 	else:
 		player.teleport(start_position)
-		reset_timer.start(reset_delay)
+		print("DEAD")
+		_on_reset_timer_finished()
+		#reset_timer.start(reset_delay)
 
 func _on_reset_timer_finished() -> void:
 	player.show()

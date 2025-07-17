@@ -14,10 +14,15 @@ func _ready() -> void:
 	move_controller.move_interval = move_interval
 
 func _process(delta: float) -> void:
+	if not is_active:
+		return
 	move_controller.update()
+	print(global_position)
 	check_collisions()
 
 func _physics_process(delta: float) -> void:
+	if not is_active:
+		return
 	move()
 
 func move() -> void:
@@ -33,6 +38,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func check_collisions() -> void:
 	var colliding_areas: Array[Area2D] = get_overlapping_areas()
+	print(colliding_areas)
 	var is_in_play_area = false
 	for area in colliding_areas:
 		if area is PlayArea:
@@ -40,10 +46,11 @@ func check_collisions() -> void:
 		if area is Person:
 			fail_player()
 	if not is_in_play_area:
-		print("WHAT")
+		print("NOTINPLAY")
 		fail_player()
 
 func teleport(new_position: Vector2) -> void:
+	print("teleport")
 	move_controller.teleport(new_position)
 
 func activate() -> void:
