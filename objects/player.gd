@@ -38,7 +38,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func check_collisions() -> void:
 	var colliding_areas: Array[Area2D] = get_overlapping_areas()
-	print(colliding_areas)
 	var is_in_play_area = false
 	for area in colliding_areas:
 		if area is PlayArea:
