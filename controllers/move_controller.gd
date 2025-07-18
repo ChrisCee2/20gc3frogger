@@ -38,6 +38,11 @@ func update_position(offset: Vector2) -> void:
 	animation_timer.start(animation_interval)
 	moved.emit()
 
+func teleport(new_position: Vector2) -> void:
+	desired_position = new_position
+	object.global_position = desired_position
+	animation_timer.stop()
+
 func update() -> void:
 	object.global_position = object.global_position.lerp(
 		desired_position,
