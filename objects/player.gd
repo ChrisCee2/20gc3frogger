@@ -5,6 +5,7 @@ signal fail
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
 @onready var move_interval: float = 0.0
+@onready var c = $CollisionShape2D
 
 var desired_position = global_position
 var move_buffer: Vector2 = Vector2.ZERO
@@ -12,13 +13,13 @@ var is_active: bool = false
 
 func _ready() -> void:
 	move_controller.move_interval = move_interval
+	area_entered.connect(_handle_area_enter)
+	area_exited.connect(_handle_area_exit)
 
 func _process(delta: float) -> void:
 	if not is_active:
 		return
 	move_controller.update()
-	print(global_position)
-	check_collisions()
 
 func _physics_process(delta: float) -> void:
 	if not is_active:
@@ -36,20 +37,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		move_buffer = move_direction
 		move()
 
-func check_collisions() -> void:
-	var colliding_areas: Array[Area2D] = get_overlapping_areas()
-	var is_in_play_area = false
-	for area in colliding_areas:
-		if area is PlayArea:
-			is_in_play_area = true
-		if area is Person:
+func _handle_area_enter(area: Area2D) -> void:
+	if area is Person:
 			fail_player()
-	if not is_in_play_area:
-		print("NOTINPLAY")
+
+func _handle_area_exit(area: Area2D) -> void:
+	if area is PlayArea:
 		fail_player()
 
 func teleport(new_position: Vector2) -> void:
-	print("teleport")
 	move_controller.teleport(new_position)
 
 func activate() -> void:
