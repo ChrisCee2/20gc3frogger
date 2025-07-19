@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c35hauik4nvs6"]
+[gd_scene load_steps=12 format=3 uid="uid://c35hauik4nvs6"]
 
 [ext_resource type="Script" uid="uid://c6no1pcq8lf0c" path="res://ui/main_menu.gd" id="1_t7e0r"]
 [ext_resource type="Texture2D" uid="uid://cd4jdrtuc2vk5" path="res://sprites/sprite_sheets/play_button.png" id="2_0dkrt"]
 [ext_resource type="PackedScene" uid="uid://0vgeujdmi23w" path="res://ui/animated_button.tscn" id="2_wk0pr"]
+[ext_resource type="Texture2D" uid="uid://ddbi5msjrcwef" path="res://sprites/sprite_sheets/exit_button.png" id="4_rmr83"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wk0pr"]
 atlas = ExtResource("2_0dkrt")
@@ -75,9 +76,13 @@ _data = {
 &"normal": SubResource("Animation_ei257")
 }
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p3jrs"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uxxo"]
+atlas = ExtResource("4_rmr83")
+region = Rect2(0, 0, 64, 32)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_at0u2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei257"]
+atlas = ExtResource("4_rmr83")
+region = Rect2(0, 0, 64, 32)
 
 [node name="MainMenu" type="Control"]
 texture_filter = 1
@@ -112,9 +117,18 @@ color = Color(0, 0, 0, 1)
 
 [node name="GridContainer" type="GridContainer" parent="."]
 texture_filter = 1
-layout_mode = 0
-offset_right = 284.0
-offset_bottom = 154.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -52.0
+offset_right = 32.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/v_separation = 40
 
 [node name="PlayButton" parent="GridContainer" node_paths=PackedStringArray("animation_player") instance=ExtResource("2_wk0pr")]
@@ -128,21 +142,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_ei257")
 }
 
-[node name="ExitButton" type="Button" parent="GridContainer"]
-texture_filter = 1
+[node name="ExitButton" parent="GridContainer" node_paths=PackedStringArray("animation_player") instance=ExtResource("2_wk0pr")]
 layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 63
-theme_override_styles/focus = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_at0u2")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_p3jrs")
-text = "Exit"
+texture_normal = SubResource("AtlasTexture_8uxxo")
+texture_hover = SubResource("AtlasTexture_ei257")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridContainer/ExitButton"]
+libraries = {
+&"": SubResource("AnimationLibrary_ei257")
+}
