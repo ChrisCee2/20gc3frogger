@@ -20,9 +20,6 @@ size = Vector2(639, 31)
 [node name="PlayArea" parent="." instance=ExtResource("5_2nij2")]
 size = Vector2(640, 640)
 
-[node name="Person" parent="." instance=ExtResource("2_sasra")]
-position = Vector2(360, 0)
-
 [node name="Player" parent="." instance=ExtResource("1_ia1lp")]
 
 [node name="GameController" parent="." node_paths=PackedStringArray("play_area", "player") instance=ExtResource("4_coq8p")]
@@ -48,6 +45,13 @@ object_parent = NodePath("..")
 object = NodePath("Soap")
 
 [node name="Soap" parent="Spawner" instance=ExtResource("3_sasra")]
-position = Vector2(-272, 0)
 
-[node name="Spawner2" parent="." instance=ExtResource("6_8pr8v")]
+[node name="Spawner2" parent="." node_paths=PackedStringArray("object_parent", "object") instance=ExtResource("6_8pr8v")]
+position = Vector2(336, -32)
+autostart = true
+object_parent = NodePath("..")
+object = NodePath("Person")
+min_spawn_time = 0.5
+max_spawn_time = 2.0
+
+[node name="Person" parent="Spawner2" instance=ExtResource("2_sasra")]
