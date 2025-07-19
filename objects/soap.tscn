@@ -48,6 +48,8 @@ _data = {
 
 [node name="Soap" type="Area2D"]
 script = ExtResource("1_p0is6")
+should_move_left = null
+move_interval = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_24jkt")

@@ -47,6 +47,7 @@ object_parent = NodePath("..")
 object = NodePath("Soap")
 
 [node name="Soap" parent="Spawner" instance=ExtResource("3_sasra")]
+should_move_left = true
 move_interval = 0.6
 
 [node name="Spawner2" parent="." node_paths=PackedStringArray("object_parent", "object") instance=ExtResource("6_8pr8v")]
