@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://j3ka2q4kgsok"]
+[gd_scene load_steps=10 format=3 uid="uid://j3ka2q4kgsok"]
 
 [ext_resource type="PackedScene" uid="uid://cmrxs55rkgib0" path="res://objects/player.tscn" id="1_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://dk7k5h44nry4" path="res://objects/person.tscn" id="2_sasra"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://buuh75mykbpxs" path="res://controllers/game_controller.tscn" id="4_coq8p"]
 [ext_resource type="PackedScene" uid="uid://boh0882xqir7n" path="res://play_area.tscn" id="5_2nij2"]
 [ext_resource type="PackedScene" uid="uid://cbo65rtkhu5pr" path="res://objects/water.tscn" id="6_7cbxl"]
+[ext_resource type="PackedScene" uid="uid://dtdj5camjcni5" path="res://objects/spawner.tscn" id="6_8pr8v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pr8v"]
 size = Vector2(639, 31)
@@ -24,9 +25,6 @@ position = Vector2(360, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_ia1lp")]
 
-[node name="Soap" parent="." instance=ExtResource("3_sasra")]
-position = Vector2(64, 32)
-
 [node name="GameController" parent="." node_paths=PackedStringArray("play_area", "player") instance=ExtResource("4_coq8p")]
 play_area = NodePath("../PlayArea")
 player = NodePath("../Player")
@@ -42,3 +40,14 @@ shape = SubResource("RectangleShape2D_8pr8v")
 modulate = Color(0.27117, 0.684052, 0.868411, 1)
 scale = Vector2(640, 32)
 texture = SubResource("CanvasTexture_7cbxl")
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("object_parent", "object") instance=ExtResource("6_8pr8v")]
+position = Vector2(336, 32)
+autostart = true
+object_parent = NodePath("..")
+object = NodePath("Soap")
+
+[node name="Soap" parent="Spawner" instance=ExtResource("3_sasra")]
+position = Vector2(-272, 0)
+
+[node name="Spawner2" parent="." instance=ExtResource("6_8pr8v")]
