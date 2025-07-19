@@ -34,5 +34,5 @@ func update() -> void:
 func _on_move() -> void:
 	var colliding_areas: Array[Area2D] = get_overlapping_areas()
 	for area in colliding_areas:
-		if area is Player:
+		if area is Player and area.move_controller.is_finished_moving():
 			area.move_controller.shift(move_direction)
