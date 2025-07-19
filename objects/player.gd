@@ -12,6 +12,7 @@ var is_active: bool = false
 
 func _ready() -> void:
 	move_controller.move_interval = move_interval
+	move_controller.finished_moving.connect(_on_finished_moving)
 	area_entered.connect(_handle_area_enter)
 	area_exited.connect(_handle_area_exit)
 
@@ -38,7 +39,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _handle_area_enter(area: Area2D) -> void:
 	if area is Person:
-			fail_player()
+		fail_player()
+	
 
 func _handle_area_exit(area: Area2D) -> void:
 	if area is PlayArea:
@@ -56,5 +58,20 @@ func deactivate() -> void:
 func fail_player() -> void:
 	if is_active:
 		deactivate()
+		# Play fail animation
+		fail.emit()
+
+func did_fail_by_water(areas: Array[Area2D]) -> bool:
+	var is_in_water: bool = false
+	for area in areas:
+		if area is Water:
+			is_in_water = true
+		elif area is Soap:
+			return false
+	return is_in_water
+
+func _on_finished_moving() -> void:
+	var areas: Array[Area2D] = get_overlapping_areas()
+	if did_fail_by_water(areas):
 		# Play fail animation
 		fail.emit()
