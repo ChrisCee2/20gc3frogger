@@ -5,7 +5,7 @@ class_name Soap extends Area2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 
 @export var should_move_left: bool = true
-@export_range(0, 10) var move_interval: float = 0.3
+@export_range(0, 10) var move_interval: float = 1
 
 var move_direction: Vector2 = Vector2.ZERO
 var is_started: bool = false
@@ -34,5 +34,5 @@ func update() -> void:
 func _on_move() -> void:
 	var colliding_areas: Array[Area2D] = get_overlapping_areas()
 	for area in colliding_areas:
-		if area is Player:
+		if area is Player and area.move_controller.is_finished_moving():
 			area.move_controller.shift(move_direction)
