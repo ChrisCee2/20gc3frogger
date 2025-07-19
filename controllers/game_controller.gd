@@ -2,12 +2,18 @@ class_name GameController extends Node
 
 @onready var reset_timer: Timer = $ResetTimer
 
+@export_group("Game Objects")
 @export var beds: Node
 @export var play_area: Area2D
+@export var player: Player
+
+@export_group("UI")
+@export var game_end_menu: GameEndMenu
+
+@export_group("Game Settings")
+@export_range(1, 10) var lives: int = 3
 @export var play_area_size: Vector2 = Vector2(640, 640)
 @export var start_position: Vector2 = Vector2.ZERO # Should get start position from play area
-@export var player: Player
-@export_range(1, 10) var lives: int = 3
 
 var is_started: bool = false
 var is_finished: bool = false
@@ -30,6 +36,7 @@ func start() -> void:
 
 func finish() -> void:
 	is_finished = true
+	game_end_menu.enable()
 
 func _on_player_fail() -> void:
 	lives -= 1
@@ -53,3 +60,7 @@ func _on_player_reached_bed(bed: Bed) -> void:
 func _on_reset_timer_finished() -> void:
 	player.show()
 	player.activate()
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if is_finished and Input.is_action_pressed("menu"):
+		game_end_menu.go_to_main_menu()

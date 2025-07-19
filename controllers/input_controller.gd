@@ -36,4 +36,3 @@ func get_immediate_move_direction() -> Vector2:
 	elif Input.is_action_just_pressed("down"):
 		return Vector2.DOWN
 	return Vector2.ZERO
-		
