@@ -67,3 +67,9 @@ position = Vector2(48, -304)
 
 [node name="Bed2" parent="Beds" instance=ExtResource("8_buypi")]
 position = Vector2(-48, -304)
+
+[node name="Bed3" parent="Beds" instance=ExtResource("8_buypi")]
+position = Vector2(-144, -304)
+
+[node name="Bed4" parent="Beds" instance=ExtResource("8_buypi")]
+position = Vector2(144, -304)
