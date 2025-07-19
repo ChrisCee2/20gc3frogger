@@ -1,6 +1,7 @@
 class_name Player extends Area2D
 
 signal fail
+signal reached_bed
 
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
@@ -41,8 +42,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _handle_area_enter(area: Area2D) -> void:
 	if area is Soap or area is Water:
 		areas.append(area)
-	if area is Person:
+	elif area is Person:
 		fail_player()
+	elif area is Bed:
+		_on_player_reached_bed(area)
 
 func _handle_area_exit(area: Area2D) -> void:
 	if area is Soap or area is Water:
@@ -60,6 +63,12 @@ func activate() -> void:
 
 func deactivate() -> void:
 	is_active = false
+
+func _on_player_reached_bed(bed: Bed) -> void:
+	if is_active:
+		deactivate()
+		# Play sleep animation?
+		reached_bed.emit(bed)
 
 func fail_player() -> void:
 	if is_active:

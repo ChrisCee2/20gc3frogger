@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://j3ka2q4kgsok"]
+[gd_scene load_steps=11 format=3 uid="uid://j3ka2q4kgsok"]
 
 [ext_resource type="PackedScene" uid="uid://cmrxs55rkgib0" path="res://objects/player.tscn" id="1_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://dk7k5h44nry4" path="res://objects/person.tscn" id="2_sasra"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://boh0882xqir7n" path="res://play_area.tscn" id="5_2nij2"]
 [ext_resource type="PackedScene" uid="uid://cbo65rtkhu5pr" path="res://objects/water.tscn" id="6_7cbxl"]
 [ext_resource type="PackedScene" uid="uid://dtdj5camjcni5" path="res://objects/spawner.tscn" id="6_8pr8v"]
+[ext_resource type="PackedScene" uid="uid://di4c40pm2o71b" path="res://objects/bed.tscn" id="8_buypi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pr8v"]
 size = Vector2(639, 31)
@@ -22,7 +23,8 @@ size = Vector2(640, 640)
 
 [node name="Player" parent="." instance=ExtResource("1_ia1lp")]
 
-[node name="GameController" parent="." node_paths=PackedStringArray("play_area", "player") instance=ExtResource("4_coq8p")]
+[node name="GameController" parent="." node_paths=PackedStringArray("beds", "play_area", "player") instance=ExtResource("4_coq8p")]
+beds = NodePath("../Beds")
 play_area = NodePath("../PlayArea")
 player = NodePath("../Player")
 
@@ -56,3 +58,11 @@ min_spawn_time = 0.5
 max_spawn_time = 2.0
 
 [node name="Person" parent="Spawner2" instance=ExtResource("2_sasra")]
+
+[node name="Beds" type="Node" parent="."]
+
+[node name="Bed" parent="Beds" instance=ExtResource("8_buypi")]
+position = Vector2(48, -304)
+
+[node name="Bed2" parent="Beds" instance=ExtResource("8_buypi")]
+position = Vector2(-48, -304)
