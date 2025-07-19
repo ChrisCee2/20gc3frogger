@@ -25,6 +25,7 @@ position = Vector2(360, 0)
 [node name="Player" parent="." instance=ExtResource("1_ia1lp")]
 
 [node name="Soap" parent="." instance=ExtResource("3_sasra")]
+position = Vector2(64, 32)
 
 [node name="GameController" parent="." node_paths=PackedStringArray("play_area", "player") instance=ExtResource("4_coq8p")]
 play_area = NodePath("../PlayArea")

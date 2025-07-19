@@ -37,7 +37,7 @@ func shift(direction: Vector2):
 	update_position(direction * move_amount)
 
 func update_position(offset: Vector2) -> void:
-	if animation_timer.time_left != 0:
+	if !is_finished_moving():
 		animation_timer.stop()
 		finished_moving.emit()
 	previous_position = desired_position
@@ -56,6 +56,9 @@ func update() -> void:
 		desired_position,
 		(animation_interval - animation_timer.time_left) / animation_interval
 	)
+
+func is_finished_moving() -> bool:
+	return animation_timer.time_left == 0
 
 func _on_move_animation_timeout() -> void:
 	finished_moving.emit()
