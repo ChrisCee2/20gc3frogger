@@ -5,7 +5,6 @@ signal fail
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
 @onready var move_interval: float = 0.0
-@onready var c = $CollisionShape2D
 
 var desired_position = global_position
 var move_buffer: Vector2 = Vector2.ZERO
