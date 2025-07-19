@@ -1,7 +1,7 @@
 class_name MainMenu extends Control
 
-@onready var play_button: Button = $GridContainer/PlayButton
-@onready var exit_button: Button = $GridContainer/ExitButton
+@onready var play_button: BaseButton = $GridContainer/PlayButton
+@onready var exit_button: BaseButton = $GridContainer/ExitButton
 
 @onready var play_button_ap: AnimationPlayer = $GridContainer/PlayButton/AnimationPlayer
 
