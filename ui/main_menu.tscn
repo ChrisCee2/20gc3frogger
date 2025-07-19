@@ -1,6 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://c35hauik4nvs6"]
+[gd_scene load_steps=9 format=3 uid="uid://c35hauik4nvs6"]
 
 [ext_resource type="Script" uid="uid://c6no1pcq8lf0c" path="res://ui/main_menu.gd" id="1_t7e0r"]
+[ext_resource type="Texture2D" uid="uid://dl7l8tl7n3y2h" path="res://sprites/sprite_sheets/play_button.png" id="2_0dkrt"]
+[ext_resource type="PackedScene" uid="uid://0vgeujdmi23w" path="res://ui/animated_button.tscn" id="2_wk0pr"]
+
+[sub_resource type="Animation" id="Animation_wk0pr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0dkrt"]
+resource_name = "normal"
+length = 0.45
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rmr83"]
+_data = {
+&"RESET": SubResource("Animation_wk0pr"),
+&"normal": SubResource("Animation_0dkrt")
+}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p3jrs"]
 
@@ -9,47 +50,57 @@
 [node name="MainMenu" type="Control"]
 texture_filter = 1
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t7e0r")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-texture_filter = 1
+[node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -142.0
-offset_top = -77.0
-offset_right = 142.0
-offset_bottom = 77.0
+offset_left = -50000.0
+offset_top = -50000.0
+offset_right = 50000.0
+offset_bottom = 50000.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 284.0
+offset_bottom = 154.0
 theme_override_constants/v_separation = 40
 
-[node name="PlayButton" type="Button" parent="GridContainer"]
-texture_filter = 1
+[node name="PlayButton" parent="GridContainer" node_paths=PackedStringArray("sprite", "animation_player") instance=ExtResource("2_wk0pr")]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 63
-theme_override_styles/focus = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_at0u2")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_p3jrs")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_p3jrs")
-text = "Play"
+sprite = NodePath("Sprite2D")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="GridContainer/PlayButton"]
+texture_filter = 1
+texture = ExtResource("2_0dkrt")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GridContainer/PlayButton"]
+libraries = {
+&"": SubResource("AnimationLibrary_rmr83")
+}
 
 [node name="ExitButton" type="Button" parent="GridContainer"]
 texture_filter = 1

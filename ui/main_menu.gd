@@ -3,10 +3,13 @@ class_name MainMenu extends Control
 @onready var play_button: Button = $GridContainer/PlayButton
 @onready var exit_button: Button = $GridContainer/ExitButton
 
+@onready var play_button_ap: AnimationPlayer = $GridContainer/PlayButton/AnimationPlayer
+
 #var select_sfx: AudioStream = preload("res://Assets/SFX/MainSelectSFX.wav")
 #var hover_sfx: AudioStream = preload("res://Assets/SFX/MainHoverSFX.wav")
 
 func _ready() -> void:
+	play_button_ap.play("idle")
 	play_button.pressed.connect(start_game)
 	play_button.mouse_entered.connect(_on_enter)
 	

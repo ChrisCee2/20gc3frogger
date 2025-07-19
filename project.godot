@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="20gc3frogger"
-run/main_scene="uid://j3ka2q4kgsok"
+run/main_scene="uid://c35hauik4nvs6"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
