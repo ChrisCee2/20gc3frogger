@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://di4c40pm2o71b"]
+
+[ext_resource type="Script" uid="uid://cq5l0ydmd2eyh" path="res://objects/bed.gd" id="1_igruq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1jb2r"]
+size = Vector2(32, 32)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_igruq"]
+
+[node name="Bed" type="Area2D"]
+script = ExtResource("1_igruq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1jb2r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.910773, 0.924612, 0.968484, 1)
+scale = Vector2(32, 32)
+texture = SubResource("CanvasTexture_igruq")
