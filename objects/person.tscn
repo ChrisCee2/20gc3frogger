@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk7k5h44nry4"]
+[gd_scene load_steps=6 format=3 uid="uid://dk7k5h44nry4"]
 
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="1_0pife"]
 [ext_resource type="Script" uid="uid://bg7783t6eijoi" path="res://objects/person.gd" id="1_hncb1"]
+[ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://expirable.tscn" id="3_kt4bc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
 size = Vector2(31, 31)
@@ -20,3 +21,6 @@ texture = SubResource("CanvasTexture_7822p")
 
 [node name="MoveController" parent="." node_paths=PackedStringArray("object") instance=ExtResource("1_0pife")]
 object = NodePath("..")
+
+[node name="Expirable" parent="." node_paths=PackedStringArray("area") instance=ExtResource("3_kt4bc")]
+area = NodePath("..")
