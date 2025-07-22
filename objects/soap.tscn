@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bg6em2nd0yegx"]
+[gd_scene load_steps=9 format=3 uid="uid://bg6em2nd0yegx"]
 
 [ext_resource type="Script" uid="uid://dvavld8nx2lny" path="res://objects/soap.gd" id="1_p0is6"]
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="2_0f703"]
 [ext_resource type="Texture2D" uid="uid://6a0x3in374xk" path="res://sprites/sprite_sheets/soap.png" id="2_f44kt"]
+[ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://expirable.tscn" id="4_f44kt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
 size = Vector2(63, 31)
@@ -66,3 +67,6 @@ object = NodePath("..")
 libraries = {
 &"": SubResource("AnimationLibrary_1s1o8")
 }
+
+[node name="Expirable" parent="." node_paths=PackedStringArray("area") instance=ExtResource("4_f44kt")]
+area = NodePath("..")

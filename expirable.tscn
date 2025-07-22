@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://halaq7co6qj2"]
+
+[ext_resource type="Script" uid="uid://dlsumqhe502ur" path="res://objects/expirable.gd" id="1_xk7cg"]
+
+[node name="Expirable" type="Node"]
+script = ExtResource("1_xk7cg")
