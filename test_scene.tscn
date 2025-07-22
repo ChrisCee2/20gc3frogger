@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://j3ka2q4kgsok"]
+[gd_scene load_steps=15 format=3 uid="uid://j3ka2q4kgsok"]
 
 [ext_resource type="PackedScene" uid="uid://cmrxs55rkgib0" path="res://objects/player.tscn" id="1_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://dk7k5h44nry4" path="res://objects/person.tscn" id="2_sasra"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cbo65rtkhu5pr" path="res://objects/water.tscn" id="6_7cbxl"]
 [ext_resource type="PackedScene" uid="uid://dtdj5camjcni5" path="res://objects/spawner.tscn" id="6_8pr8v"]
 [ext_resource type="PackedScene" uid="uid://di4c40pm2o71b" path="res://objects/bed.tscn" id="8_buypi"]
+[ext_resource type="PackedScene" uid="uid://obli20lme1fv" path="res://objects/bubbles.tscn" id="8_rpuu0"]
 [ext_resource type="PackedScene" uid="uid://bt1kl17cqxynq" path="res://ui/game_end_menu.tscn" id="9_njel3"]
 [ext_resource type="PackedScene" uid="uid://cqr02dvtuihdd" path="res://ui/lives.tscn" id="10_vr1i5"]
 
@@ -53,8 +54,6 @@ object_parent = NodePath("..")
 object = NodePath("Soap")
 
 [node name="Soap" parent="Spawner" instance=ExtResource("3_sasra")]
-should_move_left = true
-move_interval = 0.6
 
 [node name="Spawner2" parent="." node_paths=PackedStringArray("object_parent", "object") instance=ExtResource("6_8pr8v")]
 position = Vector2(336, -32)
@@ -65,6 +64,14 @@ min_spawn_time = 0.5
 max_spawn_time = 2.0
 
 [node name="Person" parent="Spawner2" instance=ExtResource("2_sasra")]
+
+[node name="Spawner3" parent="." node_paths=PackedStringArray("object_parent", "object") instance=ExtResource("6_8pr8v")]
+position = Vector2(336, -96)
+autostart = true
+object_parent = NodePath("..")
+object = NodePath("Bubbles")
+
+[node name="Bubbles" parent="Spawner3" instance=ExtResource("8_rpuu0")]
 
 [node name="Beds" type="Node" parent="."]
 
@@ -85,7 +92,6 @@ position = Vector2(144, -304)
 [node name="GameEndMenu" parent="CanvasLayer" instance=ExtResource("9_njel3")]
 
 [node name="Lives" parent="CanvasLayer" node_paths=PackedStringArray("life_sprite") instance=ExtResource("10_vr1i5")]
-anchors_preset = 0
 life_sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Lives"]

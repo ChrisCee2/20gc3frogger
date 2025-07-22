@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bg6em2nd0yegx"]
+[gd_scene load_steps=9 format=3 uid="uid://obli20lme1fv"]
 
-[ext_resource type="Script" uid="uid://dvavld8nx2lny" path="res://objects/soap.gd" id="1_p0is6"]
-[ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="2_0f703"]
-[ext_resource type="Texture2D" uid="uid://6a0x3in374xk" path="res://sprites/sprite_sheets/soap.png" id="2_f44kt"]
-[ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://expirable.tscn" id="4_f44kt"]
+[ext_resource type="Script" uid="uid://fpw7jqiowvha" path="res://objects/bubbles.gd" id="1_spyys"]
+[ext_resource type="Texture2D" uid="uid://6a0x3in374xk" path="res://sprites/sprite_sheets/soap.png" id="2_d38rt"]
+[ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_2tobd"]
+[ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://expirable.tscn" id="4_ylg18"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
 size = Vector2(63, 31)
@@ -47,8 +47,8 @@ _data = {
 &"idle": SubResource("Animation_0f703")
 }
 
-[node name="Soap" type="Area2D"]
-script = ExtResource("1_p0is6")
+[node name="Bubbles" type="Area2D"]
+script = ExtResource("1_spyys")
 move_interval = 0.6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -56,10 +56,10 @@ shape = SubResource("RectangleShape2D_24jkt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_f44kt")
+texture = ExtResource("2_d38rt")
 hframes = 3
 
-[node name="MoveController" parent="." node_paths=PackedStringArray("object") instance=ExtResource("2_0f703")]
+[node name="MoveController" parent="." node_paths=PackedStringArray("object") instance=ExtResource("3_2tobd")]
 object = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -67,5 +67,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_1s1o8")
 }
 
-[node name="Expirable" parent="." node_paths=PackedStringArray("area") instance=ExtResource("4_f44kt")]
+[node name="Expirable" parent="." node_paths=PackedStringArray("area") instance=ExtResource("4_ylg18")]
 area = NodePath("..")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
