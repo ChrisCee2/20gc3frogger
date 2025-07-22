@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://j3ka2q4kgsok"]
+[gd_scene load_steps=14 format=3 uid="uid://j3ka2q4kgsok"]
 
 [ext_resource type="PackedScene" uid="uid://cmrxs55rkgib0" path="res://objects/player.tscn" id="1_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://dk7k5h44nry4" path="res://objects/person.tscn" id="2_sasra"]
@@ -9,11 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://dtdj5camjcni5" path="res://objects/spawner.tscn" id="6_8pr8v"]
 [ext_resource type="PackedScene" uid="uid://di4c40pm2o71b" path="res://objects/bed.tscn" id="8_buypi"]
 [ext_resource type="PackedScene" uid="uid://bt1kl17cqxynq" path="res://ui/game_end_menu.tscn" id="9_njel3"]
+[ext_resource type="PackedScene" uid="uid://cqr02dvtuihdd" path="res://ui/lives.tscn" id="10_vr1i5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pr8v"]
 size = Vector2(639, 31)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7cbxl"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vr1i5"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -24,11 +27,12 @@ size = Vector2(640, 640)
 
 [node name="Player" parent="." instance=ExtResource("1_ia1lp")]
 
-[node name="GameController" parent="." node_paths=PackedStringArray("beds", "play_area", "player", "game_end_menu") instance=ExtResource("4_coq8p")]
+[node name="GameController" parent="." node_paths=PackedStringArray("beds", "play_area", "player", "game_end_menu", "lives_ui") instance=ExtResource("4_coq8p")]
 beds = NodePath("../Beds")
 play_area = NodePath("../PlayArea")
 player = NodePath("../Player")
-game_end_menu = NodePath("../GameEndMenu")
+game_end_menu = NodePath("../CanvasLayer/GameEndMenu")
+lives_ui = NodePath("../CanvasLayer/Lives")
 
 [node name="Water" parent="." instance=ExtResource("6_7cbxl")]
 z_index = -1
@@ -76,4 +80,15 @@ position = Vector2(-144, -304)
 [node name="Bed4" parent="Beds" instance=ExtResource("8_buypi")]
 position = Vector2(144, -304)
 
-[node name="GameEndMenu" parent="." instance=ExtResource("9_njel3")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameEndMenu" parent="CanvasLayer" instance=ExtResource("9_njel3")]
+
+[node name="Lives" parent="CanvasLayer" node_paths=PackedStringArray("life_sprite") instance=ExtResource("10_vr1i5")]
+anchors_preset = 0
+life_sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Lives"]
+modulate = Color(0.946943, 0.481663, 0.540132, 1)
+scale = Vector2(32, 32)
+texture = SubResource("CanvasTexture_vr1i5")

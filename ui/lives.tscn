@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqr02dvtuihdd"]
+
+[ext_resource type="Script" uid="uid://b31p5drlj8fek" path="res://ui/lives.gd" id="1_posq7"]
+
+[node name="Lives" type="HBoxContainer"]
+anchors_preset = -1
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 40.0
+theme_override_constants/separation = 40
+alignment = 2
+script = ExtResource("1_posq7")
