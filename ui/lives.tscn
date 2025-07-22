@@ -1,8 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqr02dvtuihdd"]
+[gd_scene load_steps=2 format=3 uid="uid://cqr02dvtuihdd"]
 
 [ext_resource type="Script" uid="uid://b31p5drlj8fek" path="res://ui/lives.gd" id="1_posq7"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_0s3oi"]
 
 [node name="Lives" type="HBoxContainer"]
 anchors_preset = -1
@@ -12,17 +10,3 @@ offset_right = 40.0
 theme_override_constants/separation = 40
 alignment = 2
 script = ExtResource("1_posq7")
-
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Panel"]
-scale = Vector2(32, 32)
-texture = SubResource("CanvasTexture_0s3oi")
-
-[node name="Panel2" type="Panel" parent="."]
-layout_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="Panel2"]
-scale = Vector2(32, 32)
-texture = SubResource("CanvasTexture_0s3oi")

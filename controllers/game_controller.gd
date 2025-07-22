@@ -9,6 +9,7 @@ class_name GameController extends Node
 
 @export_group("UI")
 @export var game_end_menu: GameEndMenu
+@export var lives_ui: Lives
 
 @export_group("Game Settings")
 @export_range(1, 10) var lives: int = 3
@@ -33,6 +34,7 @@ func start() -> void:
 	player.activate()
 	is_started = true
 	is_finished = false
+	lives_ui.set_lives(lives)
 
 func finish() -> void:
 	is_finished = true
@@ -40,6 +42,7 @@ func finish() -> void:
 
 func _on_player_fail() -> void:
 	lives -= 1
+	lives_ui.remove_life()
 	player.hide()
 	if lives <= 0:
 		finish()
