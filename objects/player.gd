@@ -40,7 +40,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		move()
 
 func _handle_area_enter(area: Area2D) -> void:
-	if area is Soap or area is Water:
+	if area.has_node("Floatable") or area is Water:
 		areas.append(area)
 	elif area is Person:
 		fail_player()
@@ -48,7 +48,7 @@ func _handle_area_enter(area: Area2D) -> void:
 		_on_player_reached_bed(area)
 
 func _handle_area_exit(area: Area2D) -> void:
-	if area is Soap or area is Water:
+	if area.has_node("Floatable") or area is Water:
 		areas.erase(area)
 		if move_controller.is_finished_moving() and did_fail_by_water():
 			fail_player()
@@ -85,7 +85,7 @@ func did_fail_by_water() -> bool:
 	for area in areas:
 		if area is Water:
 			is_in_water = true
-		elif area is Soap:
+		elif area.has_node("Floatable"):
 			return false
 	return is_in_water
 

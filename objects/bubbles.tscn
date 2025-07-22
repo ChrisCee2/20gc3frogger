@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://obli20lme1fv"]
+[gd_scene load_steps=10 format=3 uid="uid://obli20lme1fv"]
 
 [ext_resource type="Script" uid="uid://fpw7jqiowvha" path="res://objects/bubbles.gd" id="1_spyys"]
 [ext_resource type="Texture2D" uid="uid://6a0x3in374xk" path="res://sprites/sprite_sheets/soap.png" id="2_d38rt"]
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_2tobd"]
 [ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://expirable.tscn" id="4_ylg18"]
+[ext_resource type="PackedScene" uid="uid://d21so7t4ukwd8" path="res://floatable.tscn" id="5_d38rt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
 size = Vector2(63, 31)
@@ -72,3 +73,5 @@ area = NodePath("..")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Floatable" parent="." instance=ExtResource("5_d38rt")]

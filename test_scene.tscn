@@ -47,6 +47,18 @@ modulate = Color(0.27117, 0.684052, 0.868411, 1)
 scale = Vector2(640, 32)
 texture = SubResource("CanvasTexture_7cbxl")
 
+[node name="Water2" parent="." instance=ExtResource("6_7cbxl")]
+z_index = -1
+position = Vector2(0, -96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water2"]
+shape = SubResource("RectangleShape2D_8pr8v")
+
+[node name="Sprite2D" type="Sprite2D" parent="Water2"]
+modulate = Color(0.27117, 0.684052, 0.868411, 1)
+scale = Vector2(640, 32)
+texture = SubResource("CanvasTexture_7cbxl")
+
 [node name="Spawner" parent="." node_paths=PackedStringArray("object_parent", "object") instance=ExtResource("6_8pr8v")]
 position = Vector2(336, 32)
 autostart = true
