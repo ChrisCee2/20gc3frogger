@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmrxs55rkgib0"]
+[gd_scene load_steps=7 format=3 uid="uid://cmrxs55rkgib0"]
 
 [ext_resource type="Script" uid="uid://b8gydy1yjmjk4" path="res://objects/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://de3y3ubnh3y27" path="res://controllers/input_controller.tscn" id="2_onrkg"]
@@ -8,6 +8,8 @@
 size = Vector2(32, 32)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_onrkg"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_uxov2"]
 
 [node name="Player" type="Area2D"]
 z_index = 100
@@ -28,3 +30,23 @@ one_shot = true
 
 [node name="MoveController" parent="." node_paths=PackedStringArray("object") instance=ExtResource("3_i3pqv")]
 object = NodePath("..")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 4
+texture = SubResource("CanvasTexture_uxov2")
+one_shot = true
+explosiveness = 1.0
+use_fixed_seed = true
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+direction = Vector2(1, 0.05)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
+damping_min = 10.0
+damping_max = 10.0
+scale_amount_min = 12.0
+scale_amount_max = 12.0
+color = Color(0.381165, 0.409499, 0.121401, 1)
