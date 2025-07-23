@@ -24,6 +24,10 @@ func _process(delta: float) -> void:
 	if not is_active:
 		return
 	move_controller.update()
+	
+	if move_controller.animation_timer.time_left == 0 \
+	and did_fail_by_water():
+		fail_player()
 
 func _physics_process(delta: float) -> void:
 	if not is_active:
