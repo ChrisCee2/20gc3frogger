@@ -1,12 +1,15 @@
 class_name Expirable extends Node
 
 @export var area: Area2D
+@export var area_to_expire: Area2D
 
 var should_expire: bool = false
 
 func _ready() -> void:
 	if area:
 		_initialize_area()
+	if area_to_expire == null:
+		area_to_expire = area
 
 func set_area(new_area: Area2D) -> void:
 	if area:
@@ -25,4 +28,4 @@ func _on_enter(entered_area: Area2D) -> void:
 
 func _on_exit(exited_area: Area2D) -> void:
 	if exited_area is PlayArea and should_expire:
-		area.queue_free()
+		area_to_expire.queue_free()
