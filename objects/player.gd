@@ -6,6 +6,8 @@ signal reached_bed
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
 @onready var move_interval: float = 0.0
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var smoke: Smoke = $Smoke
 
 var desired_position = global_position
 var move_buffer: Vector2 = Vector2.ZERO
@@ -22,6 +24,10 @@ func _process(delta: float) -> void:
 	if not is_active:
 		return
 	move_controller.update()
+	
+	if move_controller.animation_timer.time_left == 0 \
+	and did_fail_by_water():
+		fail_player()
 
 func _physics_process(delta: float) -> void:
 	if not is_active:
@@ -77,8 +83,7 @@ func _on_player_reached_bed(bed: Bed) -> void:
 func fail_player() -> void:
 	if is_active:
 		deactivate()
-		# Play fail animation
-		fail.emit()
+		animation_player.play("explode")
 
 func did_fail_by_water() -> bool:
 	var is_in_water: bool = false
@@ -91,5 +96,13 @@ func did_fail_by_water() -> bool:
 
 func _on_finished_moving() -> void:
 	if did_fail_by_water():
-		# Play fail animation
 		fail_player()
+
+func emit_fail() -> void:
+	fail.emit()
+
+func create_smoke() -> void:
+	var new_smoke = smoke.duplicate()
+	new_smoke.global_position = global_position
+	get_tree().root.get_child(0).add_child(new_smoke)
+	new_smoke.play()

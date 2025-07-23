@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://7mcgrtf3ke3f"]
+
+[ext_resource type="Texture2D" uid="uid://b5gm5245tkq7o" path="res://sprites/smoke.png" id="1_niign"]
+[ext_resource type="Script" uid="uid://b3ychmtaku2oo" path="res://smoke.gd" id="2_ca0x4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca0x4"]
+atlas = ExtResource("1_niign")
+region = Rect2(0, 0, 12, 8)
+
+[sub_resource type="Animation" id="Animation_sl1eh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 12, 8)]
+}
+
+[sub_resource type="Animation" id="Animation_o88gx"]
+resource_name = "smoke"
+length = 0.45
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06),
+"update": 0,
+"values": [Rect2(0, 0, 12, 8), Rect2(12, 0, 12, 8), Rect2(24, 0, 12, 8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ofkd8"]
+_data = {
+&"RESET": SubResource("Animation_sl1eh"),
+&"smoke": SubResource("Animation_o88gx")
+}
+
+[node name="Smoke" type="CPUParticles2D"]
+texture_filter = 1
+emitting = false
+amount = 3
+texture = SubResource("AtlasTexture_ca0x4")
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 16
+emission_shape = 3
+emission_rect_extents = Vector2(16, 16)
+direction = Vector2(1, 0.05)
+spread = 10.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 6.0
+initial_velocity_max = 6.0
+damping_min = 4.0
+damping_max = 4.0
+scale_amount_min = 1.5
+scale_amount_max = 3.0
+script = ExtResource("2_ca0x4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ofkd8")
+}
