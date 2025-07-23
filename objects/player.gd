@@ -7,6 +7,7 @@ signal reached_bed
 @onready var move_controller: MoveController = $MoveController
 @onready var move_interval: float = 0.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var smoke: Smoke = $Smoke
 
 var desired_position = global_position
 var move_buffer: Vector2 = Vector2.ZERO
@@ -95,3 +96,9 @@ func _on_finished_moving() -> void:
 
 func emit_fail() -> void:
 	fail.emit()
+
+func create_smoke() -> void:
+	var new_smoke = smoke.duplicate()
+	new_smoke.global_position = global_position
+	get_tree().root.get_child(0).add_child(new_smoke)
+	new_smoke.play()
