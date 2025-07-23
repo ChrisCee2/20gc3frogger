@@ -6,6 +6,7 @@ signal reached_bed
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
 @onready var move_interval: float = 0.0
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var desired_position = global_position
 var move_buffer: Vector2 = Vector2.ZERO
@@ -77,8 +78,7 @@ func _on_player_reached_bed(bed: Bed) -> void:
 func fail_player() -> void:
 	if is_active:
 		deactivate()
-		# Play fail animation
-		fail.emit()
+		animation_player.play("explode")
 
 func did_fail_by_water() -> bool:
 	var is_in_water: bool = false
@@ -91,5 +91,7 @@ func did_fail_by_water() -> bool:
 
 func _on_finished_moving() -> void:
 	if did_fail_by_water():
-		# Play fail animation
 		fail_player()
+
+func emit_fail() -> void:
+	fail.emit()
