@@ -68,10 +68,16 @@ libraries = {
 &"": SubResource("AnimationLibrary_1s1o8")
 }
 
-[node name="Expirable" parent="." node_paths=PackedStringArray("area") instance=ExtResource("4_ylg18")]
-area = NodePath("..")
+[node name="Expirable" parent="." node_paths=PackedStringArray("area", "area_to_expire") instance=ExtResource("4_ylg18")]
+area = NodePath("../ExpiryArea")
+area_to_expire = NodePath("..")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="Floatable" parent="." instance=ExtResource("5_d38rt")]
+
+[node name="ExpiryArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExpiryArea"]
+shape = SubResource("RectangleShape2D_24jkt")

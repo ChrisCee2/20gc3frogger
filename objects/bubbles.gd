@@ -26,6 +26,7 @@ func _ready() -> void:
 	timer.one_shot = true
 	timer.timeout.connect(_on_timeout)
 	set_deferred("monitorable", is_active)
+	set_deferred("monitoring", is_active)
 	hide()
 
 func start() -> void:
@@ -33,12 +34,14 @@ func start() -> void:
 	is_active = true
 	_animation_player.play("idle")
 	set_deferred("monitorable", is_active)
+	set_deferred("monitoring", is_active)
 	show()
 	timer.start(get_start_time())
 
 func switch_active() -> void:
 	is_active = !is_active
 	set_deferred("monitorable", is_active)
+	set_deferred("monitoring", is_active)
 	if is_active:
 		show()
 	else:
