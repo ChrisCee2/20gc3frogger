@@ -1,69 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://cmrxs55rkgib0"]
+[gd_scene load_steps=22 format=3 uid="uid://cmrxs55rkgib0"]
 
 [ext_resource type="Script" uid="uid://b8gydy1yjmjk4" path="res://objects/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://7mcgrtf3ke3f" path="res://smoke.tscn" id="2_f46kd"]
 [ext_resource type="PackedScene" uid="uid://de3y3ubnh3y27" path="res://controllers/input_controller.tscn" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_i3pqv"]
-[ext_resource type="Texture2D" uid="uid://buxtbfe8t80tg" path="res://sprites/sprite_sheets/explosion.png" id="3_nmc1l"]
-[ext_resource type="Texture2D" uid="uid://dfep48fmc8gxf" path="res://sprites/sprite_sheets/sasha.png" id="6_3rerk"]
+[ext_resource type="Texture2D" uid="uid://cqmeoya78lgme" path="res://sprites/sprite_sheets/sasha.png" id="6_3rerk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
 size = Vector2(32, 32)
-
-[sub_resource type="Animation" id="Animation_f46kd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ExplosionSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_nmc1l"]
-resource_name = "explode"
-length = 0.6
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ExplosionSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.02, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"create_smoke"
-}, {
-"args": [],
-"method": &"emit_fail"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3rerk"]
-_data = {
-&"RESET": SubResource("Animation_f46kd"),
-&"explode": SubResource("Animation_nmc1l")
-}
 
 [sub_resource type="Animation" id="Animation_ysdwx"]
 length = 0.001
@@ -380,12 +324,44 @@ tracks/1/keys = {
 "values": [Vector2(-1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_i8sra"]
+resource_name = "explode"
+length = 0.45
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06),
+"update": 1,
+"values": [27, 28, 29]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_fail"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_agx2l"]
 _data = {
 &"RESET": SubResource("Animation_ysdwx"),
 &"back": SubResource("Animation_qwy7u"),
 &"back1": SubResource("Animation_yj782"),
 &"back2": SubResource("Animation_7liuu"),
+&"explode": SubResource("Animation_i8sra"),
 &"forward": SubResource("Animation_brgjs"),
 &"forward1": SubResource("Animation_0bm6b"),
 &"forward2": SubResource("Animation_pj58q"),
@@ -415,22 +391,11 @@ one_shot = true
 [node name="MoveController" parent="." node_paths=PackedStringArray("object") instance=ExtResource("3_i3pqv")]
 object = NodePath("..")
 
-[node name="ExplosionSprite" type="Sprite2D" parent="."]
-visible = false
-texture_filter = 1
-texture = ExtResource("3_nmc1l")
-hframes = 4
-
-[node name="ExplosionAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3rerk")
-}
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(-1, 1)
 texture = ExtResource("6_3rerk")
 hframes = 3
-vframes = 9
+vframes = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

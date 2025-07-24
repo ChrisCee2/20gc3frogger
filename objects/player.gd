@@ -120,14 +120,15 @@ func create_smoke() -> void:
 	new_smoke.play()
 
 func update_animation_state(move_offset: Vector2) -> void:
-	current_animation_state = (current_animation_state + 1) % animation_state_count
-	if abs(move_offset.x) > abs(move_offset.y):
-		if move_offset.x < 0:
-			animation_player.play(animation_states[current_animation_state][0])
+	if is_active:
+		current_animation_state = (current_animation_state + 1) % animation_state_count
+		if abs(move_offset.x) > abs(move_offset.y):
+			if move_offset.x < 0:
+				animation_player.play(animation_states[current_animation_state][0])
+			else:
+				animation_player.play(animation_states[current_animation_state][1])
 		else:
-			animation_player.play(animation_states[current_animation_state][1])
-	else:
-		if move_offset.y < 0:
-			animation_player.play(animation_states[current_animation_state][3])
-		else:
-			animation_player.play(animation_states[current_animation_state][2])
+			if move_offset.y < 0:
+				animation_player.play(animation_states[current_animation_state][3])
+			else:
+				animation_player.play(animation_states[current_animation_state][2])
