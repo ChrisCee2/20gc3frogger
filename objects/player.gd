@@ -112,6 +112,7 @@ func _on_finished_moving() -> void:
 
 func emit_fail() -> void:
 	fail.emit()
+	animation_player.play(animation_states[0][0])
 
 func create_smoke() -> void:
 	var new_smoke = smoke.duplicate()
