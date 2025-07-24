@@ -1,11 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://di4c40pm2o71b"]
+[gd_scene load_steps=7 format=3 uid="uid://di4c40pm2o71b"]
 
 [ext_resource type="Script" uid="uid://cq5l0ydmd2eyh" path="res://objects/bed.gd" id="1_igruq"]
+[ext_resource type="Texture2D" uid="uid://c5t2drs2204mx" path="res://sprites/sprite_sheets/bed.png" id="2_j7j8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jb2r"]
 size = Vector2(32, 32)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_igruq"]
+[sub_resource type="Animation" id="Animation_udiw2"]
+resource_name = "idle"
+length = 0.45
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_4gp15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_neyby"]
+_data = {
+&"RESET": SubResource("Animation_4gp15"),
+&"idle": SubResource("Animation_udiw2")
+}
 
 [node name="Bed" type="Area2D"]
 script = ExtResource("1_igruq")
@@ -15,5 +53,10 @@ shape = SubResource("RectangleShape2D_1jb2r")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.910773, 0.924612, 0.968484, 1)
-scale = Vector2(32, 32)
-texture = SubResource("CanvasTexture_igruq")
+texture = ExtResource("2_j7j8w")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_neyby")
+}
