@@ -43,7 +43,7 @@ func update_position(offset: Vector2) -> void:
 	previous_position = desired_position
 	desired_position += offset
 	animation_timer.start(animation_interval)
-	moved.emit()
+	moved.emit(offset)
 
 func teleport(new_position: Vector2) -> void:
 	previous_position = new_position
