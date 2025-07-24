@@ -55,7 +55,7 @@ func _process(delta: float) -> void:
 func update() -> void:
 	move_controller.move(move_direction)
 
-func _on_move() -> void:
+func _on_move(offset: Vector2) -> void:
 	if not is_active:
 		return
 	var colliding_areas: Array[Area2D] = get_overlapping_areas()
