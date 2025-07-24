@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5gm5245tkq7o"
-path="res://.godot/imported/smoke.png-4ce44d0c966a6a09693dcb33792d404a.ctex"
+uid="uid://c5t2drs2204mx"
+path="res://.godot/imported/bed.png-8f26d739182d7375ffd16f255a506d44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/smoke.png"
-dest_files=["res://.godot/imported/smoke.png-4ce44d0c966a6a09693dcb33792d404a.ctex"]
+source_file="res://sprites/sprite_sheets/bed.png"
+dest_files=["res://.godot/imported/bed.png-8f26d739182d7375ffd16f255a506d44.ctex"]
 
 [params]
 

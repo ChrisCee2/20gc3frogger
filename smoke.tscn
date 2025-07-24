@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://7mcgrtf3ke3f"]
 
-[ext_resource type="Texture2D" uid="uid://b5gm5245tkq7o" path="res://sprites/smoke.png" id="1_niign"]
+[ext_resource type="Texture2D" uid="uid://b5gm5245tkq7o" path="res://sprites/sprite_sheets/smoke.png" id="1_niign"]
 [ext_resource type="Script" uid="uid://b3ychmtaku2oo" path="res://smoke.gd" id="2_ca0x4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ca0x4"]
