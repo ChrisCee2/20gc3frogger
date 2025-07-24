@@ -14,11 +14,23 @@ var move_buffer: Vector2 = Vector2.ZERO
 var is_active: bool = false
 var areas: Array[Area2D] = []
 
+# Should be a state machine but whatever
+var animation_states: Dictionary[int, Array] = {
+	0: ["left", "right", "forward", "back"],
+	1: ["left1", "right1", "forward1", "back1"],
+	2: ["left2", "right2", "forward2", "back2"]
+}
+
+var animation_state_count: int = 3
+var current_animation_state: int = 0
+
 func _ready() -> void:
 	move_controller.move_interval = move_interval
 	move_controller.finished_moving.connect(_on_finished_moving)
 	area_entered.connect(_handle_area_enter)
 	area_exited.connect(_handle_area_exit)
+	move_controller.moved.connect(update_animation_state)
+	animation_player.play(animation_states[0][0])
 
 func _process(delta: float) -> void:
 	if not is_active:
@@ -100,9 +112,24 @@ func _on_finished_moving() -> void:
 
 func emit_fail() -> void:
 	fail.emit()
+	animation_player.play(animation_states[0][0])
 
 func create_smoke() -> void:
 	var new_smoke = smoke.duplicate()
 	new_smoke.global_position = global_position
 	get_tree().root.get_child(0).add_child(new_smoke)
 	new_smoke.play()
+
+func update_animation_state(move_offset: Vector2) -> void:
+	if is_active:
+		current_animation_state = (current_animation_state + 1) % animation_state_count
+		if abs(move_offset.x) > abs(move_offset.y):
+			if move_offset.x < 0:
+				animation_player.play(animation_states[current_animation_state][0])
+			else:
+				animation_player.play(animation_states[current_animation_state][1])
+		else:
+			if move_offset.y < 0:
+				animation_player.play(animation_states[current_animation_state][3])
+			else:
+				animation_player.play(animation_states[current_animation_state][2])

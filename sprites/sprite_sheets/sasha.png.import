@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://buxtbfe8t80tg"
-path="res://.godot/imported/explosion.png-1147de9440d42b8064f772b2c88ed776.ctex"
+uid="uid://cqmeoya78lgme"
+path="res://.godot/imported/sasha.png-f61ff40430ba92e177523b94d5911ed8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/sprite_sheets/explosion.png"
-dest_files=["res://.godot/imported/explosion.png-1147de9440d42b8064f772b2c88ed776.ctex"]
+source_file="res://sprites/sprite_sheets/sasha.png"
+dest_files=["res://.godot/imported/sasha.png-f61ff40430ba92e177523b94d5911ed8.ctex"]
 
 [params]
 
