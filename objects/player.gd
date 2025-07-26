@@ -30,9 +30,10 @@ func _ready() -> void:
 	area_entered.connect(_handle_area_enter)
 	area_exited.connect(_handle_area_exit)
 	move_controller.moved.connect(update_animation_state)
-	animation_player.play(animation_states[0][0])
+	reset_state()
 
 func _process(delta: float) -> void:
+	print(current_animation_state)
 	if not is_active:
 		return
 	move_controller.update()
@@ -112,13 +113,16 @@ func _on_finished_moving() -> void:
 
 func emit_fail() -> void:
 	fail.emit()
-	animation_player.play(animation_states[0][0])
 
 func create_smoke() -> void:
 	var new_smoke = smoke.duplicate()
 	new_smoke.global_position = global_position
 	get_tree().root.get_child(0).add_child(new_smoke)
 	new_smoke.play()
+
+func reset_state() -> void:
+	current_animation_state = 0
+	animation_player.play(animation_states[0][0])
 
 func update_animation_state(move_offset: Vector2) -> void:
 	if is_active:
