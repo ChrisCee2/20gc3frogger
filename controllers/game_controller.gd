@@ -43,21 +43,23 @@ func finish() -> void:
 func _on_player_fail() -> void:
 	lives -= 1
 	lives_ui.remove_life()
-	player.hide()
+	player.deactivate()
 	if lives <= 0:
 		finish()
 	else:
 		player.teleport(start_position)
+		player.reset_state()
 		reset_timer.start(reset_delay)
 
 func _on_player_reached_bed(bed: Bed) -> void:
 	bed_count += 1
 	bed.deactivate()
-	player.hide()
+	player.deactivate()
 	if bed_count == beds.get_child_count():
 		finish()
 	else:
 		player.teleport(start_position)
+		player.reset_state()
 		reset_timer.start(reset_delay)
 
 func _on_reset_timer_finished() -> void:
