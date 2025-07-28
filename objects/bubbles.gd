@@ -71,5 +71,9 @@ func get_start_time() -> float:
 func _on_timeout() -> void:
 	# TODO: Later replace this with starting an animation, and on that animation end,
 	# Perform the switch and restart the timer (bubble pop or reappear animation)
+	_animation_player.play("expire")
+
+func _on_expire_end() -> void:
 	switch_active()
 	timer.start(get_start_time())
+	_animation_player.play("idle")
