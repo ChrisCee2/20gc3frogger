@@ -25,14 +25,13 @@ func get_move_direction() -> Vector2:
 	return Vector2(x, y)
 
 # Returns move direction from key just pressed
-func get_immediate_move_direction() -> Vector2:
-	var direction 
-	if Input.is_action_just_pressed("left"):
+func get_immediate_move_direction(event: InputEvent) -> Vector2:
+	if event.is_action_pressed("left"):
 		return Vector2.LEFT
-	elif Input.is_action_just_pressed("right"):
+	elif event.is_action_pressed("right"):
 		return Vector2.RIGHT
-	elif Input.is_action_just_pressed("up"):
+	elif event.is_action_pressed("up"):
 		return Vector2.UP
-	elif Input.is_action_just_pressed("down"):
+	elif event.is_action_pressed("down"):
 		return Vector2.DOWN
 	return Vector2.ZERO
