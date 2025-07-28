@@ -33,7 +33,6 @@ func _ready() -> void:
 	reset_state()
 
 func _process(delta: float) -> void:
-	print(current_animation_state)
 	if not is_active:
 		return
 	move_controller.update()
