@@ -54,7 +54,7 @@ func move() -> void:
 func _unhandled_key_input(event: InputEvent) -> void:
 	if not is_active:
 		return
-	var move_direction: Vector2 = input_controller.get_immediate_move_direction()
+	var move_direction: Vector2 = input_controller.get_immediate_move_direction(event)
 	if move_direction != Vector2.ZERO:
 		move_buffer = move_direction
 		move()
