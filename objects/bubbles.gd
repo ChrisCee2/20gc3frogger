@@ -14,10 +14,10 @@ var is_active: bool = false
 # Timer for how long bubble should be underwater and above water
 var timer_duration: float = 0
 var min_inactive_time: float = 2.0
-var max_inactive_time: float = 4.0
+var max_inactive_time: float = 3.0
 
-var min_active_time: float = 3.0
-var max_active_time: float = 8.0
+var min_active_time: float = 2.0
+var max_active_time: float = 5.0
 
 func _ready() -> void:
 	move_controller.move_interval = move_interval
@@ -69,7 +69,21 @@ func get_start_time() -> float:
 	return randf_range(min_inactive_time, max_inactive_time)
 
 func _on_timeout() -> void:
-	# TODO: Later replace this with starting an animation, and on that animation end,
-	# Perform the switch and restart the timer (bubble pop or reappear animation)
+	if is_active:
+		_animation_player.play("expire")
+	else:
+		_animation_player.play_backwards("expire")
+
+func _on_expire_end() -> void:
+	if not is_active:
+		show()
+		switch_active()
+		return
 	switch_active()
 	timer.start(get_start_time())
+
+func _on_expire_start() -> void:
+	if _animation_player.get_playing_speed() > 0:
+		return
+	timer.start(get_start_time())
+	_animation_player.play("idle")

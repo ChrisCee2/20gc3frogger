@@ -44,6 +44,7 @@ func _on_player_fail() -> void:
 	lives -= 1
 	lives_ui.remove_life()
 	player.deactivate()
+	player.hide()
 	if lives <= 0:
 		finish()
 	else:
@@ -55,6 +56,7 @@ func _on_player_reached_bed(bed: Bed) -> void:
 	bed_count += 1
 	bed.deactivate()
 	player.deactivate()
+	player.hide()
 	if bed_count == beds.get_child_count():
 		finish()
 	else:
