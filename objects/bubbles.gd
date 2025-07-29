@@ -49,11 +49,7 @@ func switch_active() -> void:
 
 func _process(delta: float) -> void:
 	if is_started:
-		update()
 		move_controller.update()
-
-func update() -> void:
-	move_controller.move(move_direction)
 
 func _on_move(offset: Vector2) -> void:
 	if not is_active:
@@ -87,3 +83,6 @@ func _on_expire_start() -> void:
 		return
 	timer.start(get_start_time())
 	_animation_player.play("idle")
+
+func move(move_direction: Vector2) -> void:
+	move_controller.shift(move_direction)

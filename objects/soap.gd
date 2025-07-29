@@ -24,11 +24,10 @@ func start() -> void:
 
 func _process(delta: float) -> void:
 	if is_started:
-		update()
 		move_controller.update()
 
-func update() -> void:
-	move_controller.move(move_direction)
+func move(move_direction: Vector2) -> void:
+	move_controller.shift(move_direction)
 
 func _on_move(offset: Vector2) -> void:
 	var colliding_areas: Array[Area2D] = get_overlapping_areas()

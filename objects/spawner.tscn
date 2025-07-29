@@ -7,3 +7,8 @@ script = ExtResource("1_uk7qp")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="MoveTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SpawnedObjects" type="Node" parent="."]
