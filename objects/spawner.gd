@@ -6,8 +6,8 @@ class_name Spawner extends Node2D
 
 @export var autostart: bool = false
 @export var object: Node2D
-@export var min_spawn_time: float = 1.5
-@export var max_spawn_time: float = 3
+@export var min_spawn_time: float = 3
+@export var max_spawn_time: float = 6
 @export var move_interval: float = 0.6
 @export var move_direction: Vector2 = Vector2.LEFT
 

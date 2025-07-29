@@ -63,6 +63,8 @@ texture = SubResource("CanvasTexture_7cbxl")
 position = Vector2(336, 32)
 autostart = true
 object = NodePath("Soap")
+min_spawn_time = 2.0
+move_interval = 0.8
 
 [node name="Soap" parent="Spawner" instance=ExtResource("3_sasra")]
 
@@ -70,8 +72,6 @@ object = NodePath("Soap")
 position = Vector2(336, -32)
 autostart = true
 object = NodePath("Person")
-min_spawn_time = 0.5
-max_spawn_time = 2.0
 
 [node name="Person" parent="Spawner2" instance=ExtResource("2_sasra")]
 
@@ -79,6 +79,9 @@ max_spawn_time = 2.0
 position = Vector2(336, -96)
 autostart = true
 object = NodePath("Bubbles")
+min_spawn_time = 2.0
+max_spawn_time = 5.0
+move_interval = 0.7
 
 [node name="Bubbles" parent="Spawner3" instance=ExtResource("8_rpuu0")]
 
