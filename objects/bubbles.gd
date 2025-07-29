@@ -4,10 +4,6 @@ class_name Bubbles extends Area2D
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready var timer: Timer = $Timer
 
-@export var should_move_left: bool = true
-@export_range(0, 10) var move_interval: float = 1
-
-var move_direction: Vector2 = Vector2.ZERO
 var is_started: bool = false
 var is_active: bool = false
 
@@ -20,8 +16,6 @@ var min_active_time: float = 2.0
 var max_active_time: float = 5.0
 
 func _ready() -> void:
-	move_controller.move_interval = move_interval
-	move_direction = Vector2.LEFT if should_move_left else Vector2.RIGHT
 	move_controller.moved.connect(_on_move)
 	timer.one_shot = true
 	timer.timeout.connect(_on_timeout)
@@ -49,11 +43,7 @@ func switch_active() -> void:
 
 func _process(delta: float) -> void:
 	if is_started:
-		update()
 		move_controller.update()
-
-func update() -> void:
-	move_controller.move(move_direction)
 
 func _on_move(offset: Vector2) -> void:
 	if not is_active:
@@ -61,7 +51,7 @@ func _on_move(offset: Vector2) -> void:
 	var colliding_areas: Array[Area2D] = get_overlapping_areas()
 	for area in colliding_areas:
 		if area is Player and area.move_controller.is_finished_moving():
-			area.move_controller.shift(move_direction)
+			area.move_controller.shift(offset.normalized())
 
 func get_start_time() -> float:
 	if is_active:
@@ -87,3 +77,6 @@ func _on_expire_start() -> void:
 		return
 	timer.start(get_start_time())
 	_animation_player.play("idle")
+
+func move(move_direction: Vector2) -> void:
+	move_controller.shift(move_direction)

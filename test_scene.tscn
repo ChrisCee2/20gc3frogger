@@ -59,29 +59,40 @@ modulate = Color(0.27117, 0.684052, 0.868411, 1)
 scale = Vector2(640, 32)
 texture = SubResource("CanvasTexture_7cbxl")
 
-[node name="Spawner" parent="." node_paths=PackedStringArray("object_parent", "object") instance=ExtResource("6_8pr8v")]
+[node name="Spawner" parent="." node_paths=PackedStringArray("object") instance=ExtResource("6_8pr8v")]
 position = Vector2(336, 32)
 autostart = true
-object_parent = NodePath("..")
 object = NodePath("Soap")
+min_spawn_time = 2.0
+move_interval = 0.8
 
 [node name="Soap" parent="Spawner" instance=ExtResource("3_sasra")]
 
-[node name="Spawner2" parent="." node_paths=PackedStringArray("object_parent", "object") instance=ExtResource("6_8pr8v")]
+[node name="Spawner2" parent="." node_paths=PackedStringArray("object") instance=ExtResource("6_8pr8v")]
 position = Vector2(336, -32)
 autostart = true
-object_parent = NodePath("..")
 object = NodePath("Person")
-min_spawn_time = 0.5
-max_spawn_time = 2.0
 
 [node name="Person" parent="Spawner2" instance=ExtResource("2_sasra")]
 
-[node name="Spawner3" parent="." node_paths=PackedStringArray("object_parent", "object") instance=ExtResource("6_8pr8v")]
+[node name="Spawner4" parent="." node_paths=PackedStringArray("object") instance=ExtResource("6_8pr8v")]
+position = Vector2(-336, -64)
+autostart = true
+object = NodePath("Person")
+min_spawn_time = 2.0
+max_spawn_time = 4.0
+move_interval = 0.4
+move_direction = Vector2(1, 0)
+
+[node name="Person" parent="Spawner4" instance=ExtResource("2_sasra")]
+
+[node name="Spawner3" parent="." node_paths=PackedStringArray("object") instance=ExtResource("6_8pr8v")]
 position = Vector2(336, -96)
 autostart = true
-object_parent = NodePath("..")
 object = NodePath("Bubbles")
+min_spawn_time = 2.0
+max_spawn_time = 5.0
+move_interval = 0.7
 
 [node name="Bubbles" parent="Spawner3" instance=ExtResource("8_rpuu0")]
 
