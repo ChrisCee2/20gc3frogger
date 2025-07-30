@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://j3ka2q4kgsok"]
+[gd_scene load_steps=16 format=4 uid="uid://j3ka2q4kgsok"]
 
 [ext_resource type="PackedScene" uid="uid://cmrxs55rkgib0" path="res://objects/player.tscn" id="1_ia1lp"]
+[ext_resource type="TileSet" uid="uid://y1iq0drikrrs" path="res://sprites/background_tileset.tres" id="1_oo8pe"]
 [ext_resource type="PackedScene" uid="uid://dk7k5h44nry4" path="res://objects/person.tscn" id="2_sasra"]
 [ext_resource type="PackedScene" uid="uid://bg6em2nd0yegx" path="res://objects/soap.tscn" id="3_sasra"]
 [ext_resource type="PackedScene" uid="uid://buuh75mykbpxs" path="res://controllers/game_controller.tscn" id="4_coq8p"]
@@ -20,6 +21,11 @@ size = Vector2(639, 31)
 [sub_resource type="CanvasTexture" id="CanvasTexture_vr1i5"]
 
 [node name="TestScene" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAD+////BAAAAAAAAAD8////BAAAAAAAAAD5////BAAAAAAAAAD4////BAAAAAAAAAD2////BAAAAAAAAAD/////BAAAAAAAAAAAAP//BAAAAAAAAAAFAP//BAAAAAAAAAAIAP//BAAAAAAAAAAJAP//BAAAAAAAAAAEAAEABAAAAAAAAAD+/wEABAAAAAAAAAD7/wEABAAAAAAAAAD2/wEABAAAAAAAAAD4/wIABAAAAAAAAAD8/wIABAAAAAAAAAAAAAIABAAAAAAAAAACAAIABAAAAAAAAAAFAAIABAAAAAAAAAAJAAIABAAAAAAAAAAIAPv/BAAAAAAAAAAGAPv/BAAAAAAAAAAEAPv/BAAAAAAAAAABAPv/BAAAAAAAAAD+//v/BAAAAAAAAAD7//v/BAAAAAAAAAD3//v/BAAAAAAAAAD2//r/BAAAAAAAAAD4//r/BAAAAAAAAAD9//r/BAAAAAAAAAACAPr/BAAAAAAAAAAJAPr/BAAAAAAAAAAGAPn/BAAAAAAAAAAEAPn/BAAAAAAAAAD///n/BAAAAAAAAAD3//n/BAAAAAAAAAD4//j/BAAAAAAAAAD7//j/BAAAAAAAAAD+//j/BAAAAAAAAAABAPj/BAAAAAAAAAADAPj/BAAAAAAAAAAEAPj/BAAAAAAAAAAHAPj/BAAAAAAAAAAJAPj/BAAAAAAAAAAHAAEABAAAAAAAAAAEAP//BAAAAAAAAAA=")
+tile_set = ExtResource("1_oo8pe")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
