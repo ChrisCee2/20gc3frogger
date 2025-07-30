@@ -62,7 +62,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func _handle_area_enter(area: Area2D) -> void:
 	if area.has_node("Floatable") or area is Water:
 		areas.append(area)
-	elif area is Person:
+	elif area is Dog:
 		fail_player()
 	elif area is Bed:
 		_on_player_reached_bed(area)
