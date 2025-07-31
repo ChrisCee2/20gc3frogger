@@ -1,6 +1,9 @@
 class_name Lives extends HBoxContainer
 
-@export var life_sprite: Sprite2D
+@onready var life_sprite: Sprite2D = $Sprite2D
+
+func _ready() -> void:
+	life_sprite.hide()
 
 func remove_life() -> void:
 	var life = get_child(0)
@@ -11,6 +14,7 @@ func add_life() -> void:
 	var panel: Panel = Panel.new()
 	var sprite: Sprite2D = life_sprite.duplicate()
 	sprite.show()
+	sprite.get_node("AnimationPlayer").play("idle")
 	panel.add_child(sprite)
 	panel.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	add_child(panel)

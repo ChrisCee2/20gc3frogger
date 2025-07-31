@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://j3ka2q4kgsok"]
+[gd_scene load_steps=15 format=4 uid="uid://j3ka2q4kgsok"]
 
 [ext_resource type="PackedScene" uid="uid://cmrxs55rkgib0" path="res://objects/player.tscn" id="1_ia1lp"]
 [ext_resource type="TileSet" uid="uid://y1iq0drikrrs" path="res://sprites/background_tileset.tres" id="1_oo8pe"]
@@ -18,9 +18,13 @@ size = Vector2(639, 31)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_7cbxl"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_vr1i5"]
-
 [node name="TestScene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameEndMenu" parent="CanvasLayer" instance=ExtResource("9_njel3")]
+
+[node name="Lives" parent="CanvasLayer" instance=ExtResource("10_vr1i5")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, 16)
@@ -115,15 +119,3 @@ position = Vector2(-144, -288)
 
 [node name="Bed4" parent="Beds" instance=ExtResource("8_buypi")]
 position = Vector2(144, -288)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GameEndMenu" parent="CanvasLayer" instance=ExtResource("9_njel3")]
-
-[node name="Lives" parent="CanvasLayer" node_paths=PackedStringArray("life_sprite") instance=ExtResource("10_vr1i5")]
-life_sprite = NodePath("Sprite2D")
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Lives"]
-modulate = Color(0.946943, 0.481663, 0.540132, 1)
-scale = Vector2(32, 32)
-texture = SubResource("CanvasTexture_vr1i5")
