@@ -5,6 +5,21 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_vydik"]
 region = Rect2(0, 0, 128, 128)
 
+[sub_resource type="Animation" id="Animation_8yi5b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture:region")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 128, 128)]
+}
+
 [sub_resource type="Animation" id="Animation_vydik"]
 resource_name = "frame"
 length = 0.45
@@ -21,21 +36,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06),
 "update": 0,
 "values": [Rect2(0, 0, 128, 128), Rect2(128, 0, 128, 128), Rect2(256, 0, 128, 128)]
-}
-
-[sub_resource type="Animation" id="Animation_8yi5b"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture:region")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Rect2(0, 0, 128, 128)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_256dw"]
