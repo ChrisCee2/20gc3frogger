@@ -14,6 +14,7 @@ class_name GameController extends Node
 @export_group("Game Settings")
 @export_range(1, 10) var lives: int = 3
 @export var play_area_size: Vector2 = Vector2(640, 640)
+@export var play_area_position: Vector2 = Vector2.ZERO
 @export var start_position: Vector2 = Vector2.ZERO # Should get start position from play area
 
 var is_started: bool = false
@@ -31,6 +32,7 @@ func _ready() -> void:
 func start() -> void:
 	bed_count = 0
 	play_area.set_size(Vector2(play_area_size))
+	play_area.global_position = play_area_position
 	player.activate()
 	is_started = true
 	is_finished = false
