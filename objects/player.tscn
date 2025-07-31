@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://cmrxs55rkgib0"]
+[gd_scene load_steps=22 format=3 uid="uid://cmrxs55rkgib0"]
 
 [ext_resource type="Script" uid="uid://b8gydy1yjmjk4" path="res://objects/player.gd" id="1_4flbx"]
-[ext_resource type="PackedScene" uid="uid://7mcgrtf3ke3f" path="res://smoke_old.tscn" id="2_f46kd"]
 [ext_resource type="PackedScene" uid="uid://de3y3ubnh3y27" path="res://controllers/input_controller.tscn" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cqmeoya78lgme" path="res://sprites/sprite_sheets/sasha.png" id="6_3rerk"]
@@ -377,8 +376,6 @@ _data = {
 [node name="Player" type="Area2D"]
 z_index = 100
 script = ExtResource("1_4flbx")
-
-[node name="SmokeOld" parent="." instance=ExtResource("2_f46kd")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sh265")
