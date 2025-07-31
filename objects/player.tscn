@@ -1,10 +1,10 @@
 [gd_scene load_steps=22 format=3 uid="uid://cmrxs55rkgib0"]
 
 [ext_resource type="Script" uid="uid://b8gydy1yjmjk4" path="res://objects/player.gd" id="1_4flbx"]
-[ext_resource type="PackedScene" uid="uid://7mcgrtf3ke3f" path="res://smoke.tscn" id="2_f46kd"]
 [ext_resource type="PackedScene" uid="uid://de3y3ubnh3y27" path="res://controllers/input_controller.tscn" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cqmeoya78lgme" path="res://sprites/sprite_sheets/sasha.png" id="6_3rerk"]
+[ext_resource type="PackedScene" uid="uid://c1rf1pxr57l2f" path="res://smoke.tscn" id="6_i825w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
 size = Vector2(32, 32)
@@ -377,8 +377,6 @@ _data = {
 z_index = 100
 script = ExtResource("1_4flbx")
 
-[node name="Smoke" parent="." instance=ExtResource("2_f46kd")]
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sh265")
 
@@ -401,3 +399,5 @@ vframes = 10
 libraries = {
 &"": SubResource("AnimationLibrary_agx2l")
 }
+
+[node name="Smoke" parent="." instance=ExtResource("6_i825w")]
