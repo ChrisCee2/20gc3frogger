@@ -1,14 +1,13 @@
-class_name EndFrame extends PanelContainer
+class_name EndFrame extends TextureRect
 
-@onready var win_sprite: Sprite2D = $WinSprite
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+var win_sprite_sheet: CompressedTexture2D = preload("res://sprites/sprite_sheets/win_frame.png")
 
 func _ready() -> void:
-	win_sprite.hide()
+	hide()
 
 func show_win() -> void:
-	win_sprite.show()
-	_play_animation(win_sprite)
-
-func _play_animation(sprite: Sprite2D) -> void:
-	if sprite.has_node("AnimationPlayer"):
-		sprite.get_node("AnimationPlayer").play("frame")
+	texture.atlas = win_sprite_sheet
+	show()
+	animation_player.play("frame")

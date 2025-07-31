@@ -10,6 +10,7 @@ class_name GameController extends Node
 @export_group("UI")
 @export var game_end_menu: GameEndMenu
 @export var lives_ui: Lives
+@export var end_frame: EndFrame
 
 @export_group("Game Settings")
 @export_range(1, 10) var lives: int = 3
@@ -60,6 +61,7 @@ func _on_player_reached_bed(bed: Bed) -> void:
 	player.deactivate()
 	player.hide()
 	if bed_count == beds.get_child_count():
+		end_frame.show_win()
 		finish()
 	else:
 		player.teleport(start_position)
