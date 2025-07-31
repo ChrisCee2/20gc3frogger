@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d0wm1hbeq2oo1" path="res://sprites/sprite_sheets/bed.png" id="2_j7j8w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1jb2r"]
-size = Vector2(32, 32)
+size = Vector2(31, 31)
 
 [sub_resource type="Animation" id="Animation_4gp15"]
 length = 0.001
