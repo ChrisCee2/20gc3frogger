@@ -1,6 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqr02dvtuihdd"]
+[gd_scene load_steps=6 format=3 uid="uid://cqr02dvtuihdd"]
 
 [ext_resource type="Script" uid="uid://b31p5drlj8fek" path="res://ui/lives.gd" id="1_posq7"]
+[ext_resource type="Texture2D" uid="uid://b7e5sjns8gkxv" path="res://sprites/sprite_sheets/life.png" id="2_0s3oi"]
+
+[sub_resource type="Animation" id="Animation_0s3oi"]
+resource_name = "idle"
+length = 0.45
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1e+06, 1e+06, 1e+06),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_ldmul"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_55kx0"]
+_data = {
+&"RESET": SubResource("Animation_ldmul"),
+&"idle": SubResource("Animation_0s3oi")
+}
 
 [node name="Lives" type="HBoxContainer"]
 offset_left = 20.0
@@ -9,3 +49,13 @@ offset_right = 40.0
 theme_override_constants/separation = 40
 alignment = 2
 script = ExtResource("1_posq7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0s3oi")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_55kx0")
+}
