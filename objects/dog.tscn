@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bg7783t6eijoi" path="res://objects/dog.gd" id="1_rruo7"]
 [ext_resource type="Texture2D" uid="uid://cgirsh2g8hg6d" path="res://sprites/sprite_sheets/dog.png" id="2_g7yhq"]
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_6hhdi"]
-[ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://expirable.tscn" id="4_wqbed"]
+[ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://components/expirable.tscn" id="4_wqbed"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
 size = Vector2(31, 31)

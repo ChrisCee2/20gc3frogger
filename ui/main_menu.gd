@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func start_game() -> void:
 	#AudioManager.play_audio(select_sfx)
-	var game_scene = preload("res://test_scene.tscn").instantiate()
+	var game_scene = preload("res://game_scene.tscn").instantiate()
 	get_tree().root.add_child(game_scene)
 	get_tree().current_scene = game_scene
 	queue_free()

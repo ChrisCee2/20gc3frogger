@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://de3y3ubnh3y27" path="res://controllers/input_controller.tscn" id="2_onrkg"]
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://cqmeoya78lgme" path="res://sprites/sprite_sheets/sasha.png" id="6_3rerk"]
-[ext_resource type="PackedScene" uid="uid://c1rf1pxr57l2f" path="res://smoke.tscn" id="6_i825w"]
+[ext_resource type="PackedScene" uid="uid://c1rf1pxr57l2f" path="res://objects/smoke.tscn" id="6_i825w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
 size = Vector2(32, 32)
