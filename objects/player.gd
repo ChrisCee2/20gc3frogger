@@ -98,6 +98,7 @@ func fail_player() -> void:
 	if is_active:
 		deactivate()
 		animation_player.play("explode")
+		create_smoke()
 
 func did_fail_by_water() -> bool:
 	var is_in_water: bool = false
