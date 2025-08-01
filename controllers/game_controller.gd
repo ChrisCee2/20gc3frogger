@@ -53,6 +53,8 @@ func _on_player_fail(fail_object: Object) -> void:
 			end_frame.show_lose_dog()
 		elif fail_object is PlayArea:
 			end_frame.show_lose_oob()
+		elif fail_object is Water:
+			end_frame.show_lose_water()
 		finish()
 	else:
 		player.teleport(start_position)
