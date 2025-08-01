@@ -1,7 +1,8 @@
 extends Node
 
-func play_audio(audio_stream: AudioStream):
+func play_audio(audio_stream: AudioStream, pitch: float = 1):
 	var audio_stream_player: AudioStreamPlayer = AudioStreamPlayer.new()
+	audio_stream_player.pitch_scale = pitch
 	audio_stream_player.stream = audio_stream
 	audio_stream_player.finished.connect(
 		_on_finished.bind(audio_stream_player)
