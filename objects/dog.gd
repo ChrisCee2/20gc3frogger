@@ -3,6 +3,8 @@ class_name Dog extends Area2D
 @onready var move_controller: MoveController = $MoveController
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@export var spawn_left: bool = true
+
 var animation_states: Dictionary[int, Array] = {
 	0: ["left", "right"],
 	1: ["left1", "right1"],
@@ -16,7 +18,10 @@ var is_started: bool = false
 func _ready() -> void:
 	set_deferred("monitorable", false)
 	current_animation_state = 0
-	animation_player.play(animation_states[current_animation_state][0])
+	var spawn_dir = 0 # Left
+	if not spawn_left:
+		spawn_dir = 1 # Right
+	animation_player.play(animation_states[current_animation_state][spawn_dir])
 	move_controller.moved.connect(update_animation_state)
 	hide()
 
