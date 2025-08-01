@@ -14,6 +14,8 @@ var move_buffer: Vector2 = Vector2.ZERO
 var is_active: bool = false
 var areas: Array[Area2D] = []
 
+var fail_object: Object = null # Object failed to
+
 # Should be a state machine but whatever
 var animation_states: Dictionary[int, Array] = {
 	0: ["left", "right", "forward", "back"],
@@ -37,9 +39,10 @@ func _process(delta: float) -> void:
 		return
 	move_controller.update()
 	
+	var colliding_water: Area2D = get_colliding_water()
 	if move_controller.animation_timer.time_left == 0 \
-	and did_fail_by_water():
-		fail_player()
+	and colliding_water != null:
+		fail_player(colliding_water)
 
 func _physics_process(delta: float) -> void:
 	if not is_active:
@@ -63,17 +66,18 @@ func _handle_area_enter(area: Area2D) -> void:
 	if area.has_node("Floatable") or area is Water:
 		areas.append(area)
 	elif area is Dog:
-		fail_player()
+		fail_player(area)
 	elif area is Bed:
 		_on_player_reached_bed(area)
 
 func _handle_area_exit(area: Area2D) -> void:
 	if area.has_node("Floatable") or area is Water:
 		areas.erase(area)
-		if move_controller.is_finished_moving() and did_fail_by_water():
-			fail_player()
+		var colliding_water: Area2D = get_colliding_water()
+		if move_controller.is_finished_moving() and colliding_water != null:
+			fail_player(colliding_water)
 	if area is PlayArea:
-		fail_player()
+		fail_player(area)
 
 func teleport(new_position: Vector2) -> void:
 	move_controller.teleport(new_position)
@@ -94,27 +98,30 @@ func _on_player_reached_bed(bed: Bed) -> void:
 		# Play sleep animation?
 		reached_bed.emit(bed)
 
-func fail_player() -> void:
+func fail_player(current_fail_object: Area2D) -> void:
 	if is_active:
+		fail_object = current_fail_object
 		deactivate()
 		animation_player.play("explode")
 		create_smoke()
 
-func did_fail_by_water() -> bool:
-	var is_in_water: bool = false
+# Returns water object failed to, otherwise null
+func get_colliding_water() -> Area2D:
+	var water: Object = null
 	for area in areas:
 		if area is Water:
-			is_in_water = true
+			water = area
 		elif area.has_node("Floatable"):
-			return false
-	return is_in_water
+			return null
+	return water
 
 func _on_finished_moving() -> void:
-	if did_fail_by_water():
-		fail_player()
+	var colliding_water: Area2D = get_colliding_water()
+	if colliding_water != null:
+		fail_player(colliding_water)
 
 func emit_fail() -> void:
-	fail.emit()
+	fail.emit(fail_object)
 
 func create_smoke() -> void:
 	var new_smoke = smoke.duplicate()
