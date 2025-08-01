@@ -51,6 +51,8 @@ func _on_player_fail(fail_object: Object) -> void:
 	if lives <= 0:
 		if fail_object is Dog:
 			end_frame.show_lose_dog()
+		elif fail_object is PlayArea:
+			end_frame.show_lose_oob()
 		finish()
 	else:
 		player.teleport(start_position)
