@@ -50,19 +50,20 @@ func end() -> void:
 
 func spawn() -> void:
 	if is_started and object != null:
-		var new_object: Node2D = object.duplicate()
-		new_object.global_position = global_position
-		spawned_objects.add_child(new_object)
-		if new_object.has_method("start"):
-			new_object.start()
+		create_object(global_position)
 
 func spawn_at(spawn_position: Vector2) -> void:
 	if is_started and object != null:
-		var new_object: Node2D = object.duplicate()
-		new_object.global_position = spawn_position
-		spawned_objects.add_child(new_object)
-		if new_object.has_method("start"):
-			new_object.start()
+		create_object(spawn_position)
+
+func create_object(spawn_position: Vector2) -> void:
+	var new_object: Node2D = object.duplicate()
+	if move_direction == Vector2.RIGHT and new_object is Dog:
+		new_object.spawn_left = false
+	new_object.global_position = spawn_position
+	spawned_objects.add_child(new_object)
+	if new_object.has_method("start"):
+		new_object.start()
 
 func get_wait_time() -> float:
 	return randf_range(min_spawn_time, max_spawn_time)
