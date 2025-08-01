@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://unltfyhx6m7m"]
 
-[ext_resource type="Script" uid="uid://cg6o2spxw7rqq" path="res://end_frame.gd" id="1_vydik"]
+[ext_resource type="Script" uid="uid://cg6o2spxw7rqq" path="res://ui/end_frame.gd" id="1_vydik"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vydik"]
 region = Rect2(0, 0, 128, 128)

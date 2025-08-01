@@ -1,0 +1,220 @@
+[gd_scene load_steps=15 format=4 uid="uid://dsaoruxf1l3eg"]
+
+[ext_resource type="PackedScene" uid="uid://cqr02dvtuihdd" path="res://ui/lives.tscn" id="1_daj04"]
+[ext_resource type="PackedScene" uid="uid://unltfyhx6m7m" path="res://ui/end_frame.tscn" id="2_mlphb"]
+[ext_resource type="PackedScene" uid="uid://bt1kl17cqxynq" path="res://ui/game_end_menu.tscn" id="3_opqoc"]
+[ext_resource type="TileSet" uid="uid://y1iq0drikrrs" path="res://sprites/background_tileset.tres" id="4_bpcsf"]
+[ext_resource type="PackedScene" uid="uid://boh0882xqir7n" path="res://objects/play_area.tscn" id="5_3d2pr"]
+[ext_resource type="PackedScene" uid="uid://cmrxs55rkgib0" path="res://objects/player.tscn" id="6_h5hfs"]
+[ext_resource type="PackedScene" uid="uid://buuh75mykbpxs" path="res://controllers/game_controller.tscn" id="7_snaye"]
+[ext_resource type="PackedScene" uid="uid://cbo65rtkhu5pr" path="res://objects/water.tscn" id="8_1wc4g"]
+[ext_resource type="PackedScene" uid="uid://dtdj5camjcni5" path="res://objects/spawner.tscn" id="9_78j2m"]
+[ext_resource type="PackedScene" uid="uid://bg6em2nd0yegx" path="res://objects/soap.tscn" id="10_na8jj"]
+[ext_resource type="PackedScene" uid="uid://dk7k5h44nry4" path="res://objects/dog.tscn" id="11_jv0we"]
+[ext_resource type="PackedScene" uid="uid://obli20lme1fv" path="res://objects/bubbles.tscn" id="12_nuflt"]
+[ext_resource type="PackedScene" uid="uid://di4c40pm2o71b" path="res://objects/bed.tscn" id="13_if5p2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pr8v"]
+size = Vector2(447, 159)
+
+[node name="TestScene" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Lives" parent="CanvasLayer" instance=ExtResource("1_daj04")]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="GridContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="EndFrame" parent="CanvasLayer/GridContainer" instance=ExtResource("2_mlphb")]
+visible = false
+layout_mode = 2
+
+[node name="GameEndMenu" parent="CanvasLayer/GridContainer" instance=ExtResource("3_opqoc")]
+layout_mode = 2
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAA0ABAAAAAAAAAACAA0ABAAAAAAAAAADAA0ABAAAAAAAAAAHAA0ABAAAAAAAAAAJAA0ABAAAAAAAAAAMAA0ABAAAAAAAAAANAA0ABAAAAAAAAAANAAcABAAAAAAAAAALAAcABAAAAAAAAAAJAAcABAAAAAAAAAAIAAcABAAAAAAAAAAFAAcABAAAAAAAAAADAAcABAAAAAAAAAAAAAcABAAAAAAAAAAFAAAABAAAAAAAAAACAAEABAAAAAAAAAALAAAABAAAAAAAAAANAAIAAQAAAAAAAAAMAAIAAQAAAAMAAAALAAIAAQAAAAMAAAAKAAIAAQAAAAAAAAAJAAIAAQAAAAMAAAAIAAIAAQAAAAMAAAAHAAIAAQAAAAMAAAAGAAIAAQAAAAMAAAAFAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAADAAIAAQAAAAMAAAACAAIAAQAAAAMAAAABAAIAAQAAAAMAAAAAAAIAAQAAAAAAAAAMAAYAAQAAAAQAAAALAAYAAQAAAAQAAAAKAAYAAQAAAAEAAAAJAAYAAQAAAAQAAAAHAAYAAQAAAAQAAAAGAAYAAQAAAAEAAAAFAAYAAQAAAAQAAAAEAAYAAQAAAAEAAAADAAYAAQAAAAQAAAACAAYAAQAAAAQAAAABAAYAAQAAAAEAAAAAAAYAAQAAAAQAAAANAAYAAQAAAAEAAAACAAUAAQAAAAIAAAAAAAQAAQAAAAIAAAABAAMAAQAAAAIAAAAEAAQAAQAAAAIAAAAFAAUAAQAAAAIAAAAHAAQAAQAAAAIAAAAIAAMAAQAAAAIAAAAJAAUAAQAAAAIAAAALAAMAAQAAAAIAAAAMAAQAAQAAAAIAAAALAAUAAQAAAAIAAAAGAAMAAQAAAAIAAAADAAMAAQAAAAIAAAAMAAwAAAAAAAAAAAAJAAwAAAAAAAAAAAADAAwAAAAAAAAAAAAAAAwAAAAAAAAAAAABAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAACAAoAAAAAAAAAAAAAAAoAAAAAAAAAAAAMAAoAAAAAAAAAAAAIAAkAAAAAAAAAAAAGAAkAAAAAAAAAAAABAAkAAAAAAAAAAAACAAgAAAAAAAAAAAAKAAgAAAAAAAAAAAANAAgAAAAAAAAAAAAMAAsABAAAAAAAAAAEAAoABAAAAAAAAAAJAAkABAAAAAAAAAACAAsABAAAAAAAAAAIAAYAAQAAAAEAAAA=")
+tile_set = ExtResource("4_bpcsf")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="PlayArea" parent="." instance=ExtResource("5_3d2pr")]
+size = Vector2(447, 447)
+
+[node name="Player" parent="." instance=ExtResource("6_h5hfs")]
+position = Vector2(16, 432)
+
+[node name="GameController" parent="." node_paths=PackedStringArray("beds", "play_area", "player", "game_end_menu", "lives_ui", "end_frame") instance=ExtResource("7_snaye")]
+beds = NodePath("../Beds")
+play_area = NodePath("../PlayArea")
+player = NodePath("../Player")
+game_end_menu = NodePath("../CanvasLayer/GridContainer/GameEndMenu")
+lives_ui = NodePath("../CanvasLayer/Lives")
+end_frame = NodePath("../CanvasLayer/GridContainer/EndFrame")
+play_area_size = Vector2(447, 447)
+play_area_position = Vector2(224, 224)
+start_position = Vector2(16, 432)
+
+[node name="Water" parent="." instance=ExtResource("8_1wc4g")]
+z_index = -1
+position = Vector2(224, 144)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+shape = SubResource("RectangleShape2D_8pr8v")
+
+[node name="WaterSpawners" type="Node" parent="."]
+
+[node name="Spawner" parent="WaterSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(480, 80)
+autostart = true
+object = NodePath("Soap")
+move_interval = 1.2
+prespawn_amount = 2
+prespawn_start_offset = 5.0
+min_prespawn_offset = 6.0
+max_prespawn_offset = 8.0
+
+[node name="Soap" parent="WaterSpawners/Spawner" instance=ExtResource("10_na8jj")]
+
+[node name="Spawner2" parent="WaterSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(480, 112)
+autostart = true
+object = NodePath("Bubbles")
+min_spawn_time = 2.0
+max_spawn_time = 5.0
+prespawn_amount = 3
+min_prespawn_offset = 4.0
+max_prespawn_offset = 7.0
+
+[node name="Bubbles" parent="WaterSpawners/Spawner2" instance=ExtResource("12_nuflt")]
+
+[node name="Spawner3" parent="WaterSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(480, 144)
+autostart = true
+object = NodePath("Soap")
+min_spawn_time = 4.0
+max_spawn_time = 7.0
+move_interval = 1.0
+prespawn_amount = 2
+prespawn_start_offset = 5.0
+max_prespawn_offset = 9.0
+
+[node name="Soap" parent="WaterSpawners/Spawner3" instance=ExtResource("10_na8jj")]
+
+[node name="Spawner4" parent="WaterSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(480, 176)
+autostart = true
+object = NodePath("Bubbles")
+move_interval = 0.5
+prespawn_amount = 2
+prespawn_start_offset = 6.0
+min_prespawn_offset = 4.0
+max_prespawn_offset = 8.0
+
+[node name="Bubbles" parent="WaterSpawners/Spawner4" instance=ExtResource("12_nuflt")]
+
+[node name="Spawner5" parent="WaterSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(480, 208)
+autostart = true
+object = NodePath("Soap")
+min_spawn_time = 5.0
+max_spawn_time = 8.0
+move_interval = 0.8
+prespawn_amount = 2
+min_prespawn_offset = 4.0
+max_prespawn_offset = 7.0
+
+[node name="Soap" parent="WaterSpawners/Spawner5" instance=ExtResource("10_na8jj")]
+
+[node name="DogSpawners" type="Node" parent="."]
+
+[node name="Spawner" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(464, 272)
+autostart = true
+object = NodePath("Dog")
+max_spawn_time = 5.0
+move_interval = 0.8
+prespawn_amount = 4
+
+[node name="Dog" parent="DogSpawners/Spawner" instance=ExtResource("11_jv0we")]
+
+[node name="Spawner2" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(-16, 304)
+autostart = true
+object = NodePath("Dog")
+min_spawn_time = 2.0
+max_spawn_time = 4.0
+move_interval = 0.4
+move_direction = Vector2(1, 0)
+prespawn_amount = 3
+min_prespawn_offset = 4.0
+max_prespawn_offset = 7.0
+
+[node name="Dog" parent="DogSpawners/Spawner2" instance=ExtResource("11_jv0we")]
+
+[node name="Spawner3" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(464, 336)
+autostart = true
+object = NodePath("Dog")
+move_interval = 0.7
+prespawn_amount = 3
+prespawn_start_offset = 5.0
+min_prespawn_offset = 4.0
+max_prespawn_offset = 5.0
+
+[node name="Dog" parent="DogSpawners/Spawner3" instance=ExtResource("11_jv0we")]
+
+[node name="Spawner4" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(-16, 368)
+autostart = true
+object = NodePath("Dog")
+min_spawn_time = 2.0
+max_spawn_time = 4.0
+move_interval = 0.5
+move_direction = Vector2(1, 0)
+prespawn_amount = 3
+prespawn_start_offset = 5.0
+max_prespawn_offset = 8.0
+
+[node name="Dog" parent="DogSpawners/Spawner4" instance=ExtResource("11_jv0we")]
+
+[node name="Spawner5" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
+position = Vector2(464, 400)
+autostart = true
+object = NodePath("Dog")
+min_spawn_time = 4.0
+move_interval = 1.0
+prespawn_amount = 4
+max_prespawn_offset = 7.0
+
+[node name="Dog" parent="DogSpawners/Spawner5" instance=ExtResource("11_jv0we")]
+
+[node name="Beds" type="Node" parent="."]
+
+[node name="Bed" parent="Beds" instance=ExtResource("13_if5p2")]
+position = Vector2(320, 32)
+
+[node name="Bed2" parent="Beds" instance=ExtResource("13_if5p2")]
+position = Vector2(128, 32)
+
+[node name="Bed3" parent="Beds" instance=ExtResource("13_if5p2")]
+position = Vector2(32, 32)
+
+[node name="Bed4" parent="Beds" instance=ExtResource("13_if5p2")]
+position = Vector2(224, 32)
+
+[node name="Bed5" parent="Beds" instance=ExtResource("13_if5p2")]
+position = Vector2(416, 32)
