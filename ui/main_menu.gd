@@ -15,10 +15,11 @@ func _ready() -> void:
 
 func start_game() -> void:
 	#AudioManager.play_audio(select_sfx)
-	var game_scene = preload("res://game_scene.tscn").instantiate()
-	get_tree().root.add_child(game_scene)
-	get_tree().current_scene = game_scene
-	queue_free()
+	get_tree().change_scene_to_file("res://game_scene.tscn")
+	#var game_scene = preload("res://game_scene.tscn").instantiate()
+	#get_tree().root.add_child(game_scene)
+	#get_tree().current_scene = game_scene
+	#queue_free()
 
 func exit_game() -> void:
 	#AudioManager.play_audio(select_sfx)
