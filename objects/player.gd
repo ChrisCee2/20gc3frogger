@@ -3,6 +3,7 @@ class_name Player extends Area2D
 signal fail
 signal reached_bed
 
+@onready var move_to_area: Area2D = $MoveToArea
 @onready var input_controller: InputController = $InputController
 @onready var move_controller: MoveController = $MoveController
 @onready var move_interval: float = 0.0
@@ -33,7 +34,8 @@ func _ready() -> void:
 	move_controller.finished_moving.connect(_on_finished_moving)
 	area_entered.connect(_handle_area_enter)
 	area_exited.connect(_handle_area_exit)
-	move_controller.moved.connect(update_animation_state)
+	move_controller.moved.connect(_on_move)
+	move_controller.teleported.connect(update_move_to_area)
 	reset_state()
 
 func _process(_delta: float) -> void:
@@ -127,6 +129,17 @@ func _on_finished_moving() -> void:
 func emit_fail() -> void:
 	fail.emit(fail_object_class)
 
+# Check if player will or will not land on area it is moving onto
+func is_moving_to_same_area(area_on: Area2D) -> bool:
+	var areas_moving_to: Array[Area2D] = move_to_area.get_overlapping_areas()
+	for area_moving_to in areas_moving_to:
+		if area_moving_to == area_on:
+			return true
+	return false
+
+func update_move_to_area() -> void:
+	move_to_area.global_position = move_controller.desired_position
+
 func create_smoke() -> void:
 	var new_smoke = smoke.duplicate()
 	new_smoke.global_position = global_position
@@ -150,3 +163,7 @@ func update_animation_state(move_offset: Vector2) -> void:
 				animation_player.play(animation_states[current_animation_state][3])
 			else:
 				animation_player.play(animation_states[current_animation_state][2])
+
+func _on_move(move_offset: Vector2) -> void:
+	update_animation_state(move_offset)
+	update_move_to_area()

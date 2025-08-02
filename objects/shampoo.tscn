@@ -71,7 +71,9 @@ libraries = {
 [node name="Expirable" parent="." node_paths=PackedStringArray("area") instance=ExtResource("4_nu3rl")]
 area = NodePath("..")
 
-[node name="Floatable" parent="." instance=ExtResource("5_l3ydj")]
+[node name="Floatable" parent="." node_paths=PackedStringArray("area", "move_controller") instance=ExtResource("5_l3ydj")]
+area = NodePath("..")
+move_controller = NodePath("../MoveController")
 
 [node name="Spawnable" parent="." instance=ExtResource("6_1tbk3")]
 spawn_offset = Vector2(-48, 0)

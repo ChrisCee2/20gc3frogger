@@ -20,7 +20,6 @@ var max_active_time: float = 5.0
 var is_player_on_top: bool = false
 
 func _ready() -> void:
-	move_controller.moved.connect(_on_move)
 	timer.one_shot = true
 	timer.timeout.connect(_on_timeout)
 	area_entered.connect(_handle_area_enter)
@@ -50,14 +49,6 @@ func switch_active() -> void:
 func _process(_delta: float) -> void:
 	if is_started:
 		move_controller.update()
-
-func _on_move(offset: Vector2) -> void:
-	if not is_active:
-		return
-	var colliding_areas: Array[Area2D] = get_overlapping_areas()
-	for area in colliding_areas:
-		if area is Player and area.move_controller.is_finished_moving():
-			area.move_controller.shift(offset.normalized())
 
 func get_start_time() -> float:
 	if is_active:

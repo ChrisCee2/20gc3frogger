@@ -8,7 +8,6 @@ class_name Soap extends Area2D
 var is_started: bool = false
 
 func _ready() -> void:
-	move_controller.moved.connect(_on_move)
 	set_deferred("monitorable", false)
 	hide()
 
@@ -24,9 +23,3 @@ func _process(_delta: float) -> void:
 
 func move(move_direction: Vector2) -> void:
 	move_controller.shift(move_direction)
-
-func _on_move(offset: Vector2) -> void:
-	var colliding_areas: Array[Area2D] = get_overlapping_areas()
-	for area in colliding_areas:
-		if area is Player and area.move_controller.is_finished_moving():
-			area.move_controller.shift(offset.normalized())

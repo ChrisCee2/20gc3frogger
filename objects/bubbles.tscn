@@ -172,7 +172,9 @@ area_to_expire = NodePath("..")
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
-[node name="Floatable" parent="." instance=ExtResource("5_d38rt")]
+[node name="Floatable" parent="." node_paths=PackedStringArray("area", "move_controller") instance=ExtResource("5_d38rt")]
+area = NodePath("..")
+move_controller = NodePath("../MoveController")
 
 [node name="ExpiryArea" type="Area2D" parent="."]
 
