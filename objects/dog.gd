@@ -25,7 +25,7 @@ func _ready() -> void:
 	move_controller.moved.connect(update_animation_state)
 	hide()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_started:
 		move_controller.update()
 

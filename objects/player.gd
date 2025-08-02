@@ -36,7 +36,7 @@ func _ready() -> void:
 	move_controller.moved.connect(update_animation_state)
 	reset_state()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not is_active:
 		return
 	move_controller.update()
@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 	and colliding_water != null:
 		fail_player(colliding_water)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not is_active:
 		return
 	move()

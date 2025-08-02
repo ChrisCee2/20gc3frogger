@@ -81,6 +81,6 @@ func _on_reset_timer_finished() -> void:
 	player.show()
 	player.activate()
 
-func _unhandled_key_input(event: InputEvent) -> void:
+func _unhandled_key_input(_event: InputEvent) -> void:
 	if is_finished and Input.is_action_pressed("menu"):
 		game_end_menu.go_to_main_menu()

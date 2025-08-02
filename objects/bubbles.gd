@@ -47,7 +47,7 @@ func switch_active() -> void:
 	else:
 		hide()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_started:
 		move_controller.update()
 
