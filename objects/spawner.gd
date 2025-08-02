@@ -58,9 +58,16 @@ func spawn_at(spawn_position: Vector2) -> void:
 
 func create_object(spawn_position: Vector2) -> void:
 	var new_object: Node2D = object.duplicate()
+	var object_spawn_position: Vector2 = spawn_position
+	if new_object.has_node("Spawnable"):
+		var spawnable: Spawnable = new_object.get_node("Spawnable")
+		if move_direction == Vector2.RIGHT:
+			object_spawn_position += spawnable.get_spawn_offset()
+		else:
+			object_spawn_position -= spawnable.get_spawn_offset()
 	if move_direction == Vector2.RIGHT and new_object is Dog:
 		new_object.spawn_left = false
-	new_object.global_position = spawn_position
+	new_object.global_position = object_spawn_position
 	spawned_objects.add_child(new_object)
 	if new_object.has_method("start"):
 		new_object.start()
