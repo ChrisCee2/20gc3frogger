@@ -5,6 +5,8 @@ class_name PlayArea extends Area2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sprite: Sprite2D = $Sprite2D
 
+var size_offset: float = 1000
+
 func get_class_name() -> String:
 	return "PlayArea"
 
@@ -13,4 +15,4 @@ func _ready() -> void:
 
 func set_size(new_size: Vector2) -> void:
 	collision_shape.shape.size = new_size
-	sprite.scale = new_size
+	sprite.scale = new_size + (size_offset * Vector2.ONE)
