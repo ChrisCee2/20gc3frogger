@@ -16,8 +16,8 @@ class_name Spawner extends Node2D
 @export var prespawn_amount: int = 0
 @export var prespawn_offset_interval: float = 32
 @export var prespawn_start_offset: float = 4 # Multiplied by the interval
-@export var min_prespawn_offset: float = 3 # From each prespawned object multiplied by the interval
-@export var max_prespawn_offset: float = 6 # From each prespawned object multiplied by the interval
+@export var min_prespawn_offset: int = 3 # From each prespawned object multiplied by the interval
+@export var max_prespawn_offset: int = 6 # From each prespawned object multiplied by the interval
 
 var is_started = false
 
