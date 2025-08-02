@@ -1,5 +1,7 @@
 class_name GameController extends Node
 
+@onready var win_audio: AudioStream = preload("res://sfx/win.wav")
+
 @onready var reset_timer: Timer = $ResetTimer
 
 @export_group("Game Objects")
@@ -62,6 +64,7 @@ func _on_player_fail(fail_object: Object) -> void:
 		reset_timer.start(reset_delay)
 
 func _on_player_reached_bed(bed: Bed) -> void:
+	AudioManager.play_audio(win_audio)
 	bed_count += 1
 	bed.deactivate()
 	player.deactivate()
