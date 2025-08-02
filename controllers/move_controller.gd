@@ -1,6 +1,7 @@
 class_name MoveController extends Node
 
 signal moved
+signal teleported
 signal finished_moving
 
 @onready var animation_timer: Timer = $AnimationTimer
@@ -51,6 +52,7 @@ func teleport(new_position: Vector2) -> void:
 	desired_position = new_position
 	object.global_position = desired_position
 	animation_timer.stop()
+	teleported.emit(new_position)
 
 func update() -> void:
 	object.global_position = previous_position.lerp(

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cmrxs55rkgib0"]
+[gd_scene load_steps=23 format=3 uid="uid://cmrxs55rkgib0"]
 
 [ext_resource type="Script" uid="uid://b8gydy1yjmjk4" path="res://objects/player.gd" id="1_4flbx"]
 [ext_resource type="PackedScene" uid="uid://de3y3ubnh3y27" path="res://controllers/input_controller.tscn" id="2_onrkg"]
@@ -373,6 +373,9 @@ _data = {
 &"right2": SubResource("Animation_3rfka")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f46kd"]
+size = Vector2(32, 32)
+
 [node name="Player" type="Area2D"]
 z_index = 100
 script = ExtResource("1_4flbx")
@@ -401,3 +404,9 @@ libraries = {
 }
 
 [node name="Smoke" parent="." instance=ExtResource("6_i825w")]
+
+[node name="MoveToArea" type="Area2D" parent="."]
+top_level = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MoveToArea"]
+shape = SubResource("RectangleShape2D_f46kd")
