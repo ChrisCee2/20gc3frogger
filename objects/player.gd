@@ -35,7 +35,7 @@ func _ready() -> void:
 	area_entered.connect(_handle_area_enter)
 	area_exited.connect(_handle_area_exit)
 	move_controller.moved.connect(_on_move)
-	move_controller.teleported.connect(update_move_to_area)
+	move_controller.teleported.connect(_on_teleport)
 	reset_state()
 
 func _process(_delta: float) -> void:
@@ -166,4 +166,7 @@ func update_animation_state(move_offset: Vector2) -> void:
 
 func _on_move(move_offset: Vector2) -> void:
 	update_animation_state(move_offset)
+	update_move_to_area()
+
+func _on_teleport(_new_position: Vector2) -> void:
 	update_move_to_area()
