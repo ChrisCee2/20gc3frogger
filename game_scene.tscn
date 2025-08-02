@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://dsaoruxf1l3eg"]
+[gd_scene load_steps=16 format=4 uid="uid://dsaoruxf1l3eg"]
 
 [ext_resource type="PackedScene" uid="uid://cqr02dvtuihdd" path="res://ui/lives.tscn" id="1_daj04"]
 [ext_resource type="PackedScene" uid="uid://unltfyhx6m7m" path="res://ui/end_frame.tscn" id="2_mlphb"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dtdj5camjcni5" path="res://objects/spawner.tscn" id="9_78j2m"]
 [ext_resource type="PackedScene" uid="uid://bg6em2nd0yegx" path="res://objects/soap.tscn" id="10_na8jj"]
 [ext_resource type="PackedScene" uid="uid://dk7k5h44nry4" path="res://objects/dog.tscn" id="11_jv0we"]
+[ext_resource type="PackedScene" uid="uid://bqo34gooi0y7p" path="res://objects/shampoo.tscn" id="11_mlphb"]
 [ext_resource type="PackedScene" uid="uid://obli20lme1fv" path="res://objects/bubbles.tscn" id="12_nuflt"]
 [ext_resource type="PackedScene" uid="uid://di4c40pm2o71b" path="res://objects/bed.tscn" id="13_if5p2"]
 
@@ -80,26 +81,29 @@ shape = SubResource("RectangleShape2D_8pr8v")
 [node name="Spawner" parent="WaterSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
 position = Vector2(480, 80)
 autostart = true
-object = NodePath("Soap")
-move_interval = 1.2
+object = NodePath("Bubbles")
+min_spawn_time = 1.2
+max_spawn_time = 3.0
+move_interval = 0.4
 prespawn_amount = 2
 prespawn_start_offset = 5.0
 min_prespawn_offset = 6.0
 max_prespawn_offset = 8.0
 
-[node name="Soap" parent="WaterSpawners/Spawner" instance=ExtResource("10_na8jj")]
+[node name="Bubbles" parent="WaterSpawners/Spawner" instance=ExtResource("12_nuflt")]
 
 [node name="Spawner2" parent="WaterSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
 position = Vector2(480, 112)
 autostart = true
-object = NodePath("Bubbles")
-min_spawn_time = 2.0
+object = NodePath("Shampoo")
+min_spawn_time = 4.0
 max_spawn_time = 5.0
+move_interval = 0.8
 prespawn_amount = 3
 min_prespawn_offset = 4.0
 max_prespawn_offset = 7.0
 
-[node name="Bubbles" parent="WaterSpawners/Spawner2" instance=ExtResource("12_nuflt")]
+[node name="Shampoo" parent="WaterSpawners/Spawner2" instance=ExtResource("11_mlphb")]
 
 [node name="Spawner3" parent="WaterSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
 position = Vector2(480, 144)
@@ -118,6 +122,8 @@ max_prespawn_offset = 9.0
 position = Vector2(480, 176)
 autostart = true
 object = NodePath("Bubbles")
+min_spawn_time = 1.5
+max_spawn_time = 3.0
 move_interval = 0.5
 prespawn_amount = 2
 prespawn_start_offset = 6.0
@@ -130,8 +136,8 @@ max_prespawn_offset = 8.0
 position = Vector2(480, 208)
 autostart = true
 object = NodePath("Soap")
-min_spawn_time = 5.0
-max_spawn_time = 8.0
+min_spawn_time = 2.0
+max_spawn_time = 4.0
 move_interval = 0.8
 prespawn_amount = 2
 min_prespawn_offset = 4.0

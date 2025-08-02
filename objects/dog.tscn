@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://dk7k5h44nry4"]
+[gd_scene load_steps=15 format=3 uid="uid://dk7k5h44nry4"]
 
 [ext_resource type="Script" uid="uid://bg7783t6eijoi" path="res://objects/dog.gd" id="1_rruo7"]
 [ext_resource type="Texture2D" uid="uid://cgirsh2g8hg6d" path="res://sprites/sprite_sheets/dog.png" id="2_g7yhq"]
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_6hhdi"]
 [ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://components/expirable.tscn" id="4_wqbed"]
+[ext_resource type="PackedScene" uid="uid://lvalpavr6ppu" path="res://spawnable.tscn" id="5_g7yhq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
 size = Vector2(31, 31)
@@ -248,3 +249,6 @@ area = NodePath("..")
 libraries = {
 &"": SubResource("AnimationLibrary_uh46u")
 }
+
+[node name="Spawnable" parent="." instance=ExtResource("5_g7yhq")]
+spawn_offset = Vector2(-16, 0)

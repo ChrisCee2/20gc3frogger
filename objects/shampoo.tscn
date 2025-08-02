@@ -1,14 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bg6em2nd0yegx"]
+[gd_scene load_steps=11 format=3 uid="uid://bqo34gooi0y7p"]
 
-[ext_resource type="Script" uid="uid://dvavld8nx2lny" path="res://objects/soap.gd" id="1_p0is6"]
-[ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="2_0f703"]
-[ext_resource type="Texture2D" uid="uid://6a0x3in374xk" path="res://sprites/sprite_sheets/soap.png" id="2_f44kt"]
-[ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://components/expirable.tscn" id="4_f44kt"]
-[ext_resource type="PackedScene" uid="uid://d21so7t4ukwd8" path="res://components/floatable.tscn" id="5_1s1o8"]
-[ext_resource type="PackedScene" uid="uid://lvalpavr6ppu" path="res://spawnable.tscn" id="6_3v64l"]
+[ext_resource type="Script" uid="uid://dhw5sfrje0i2t" path="res://objects/shampoo.gd" id="1_kxq7y"]
+[ext_resource type="Texture2D" uid="uid://5ux7oj00pff0" path="res://sprites/sprite_sheets/shampoo.png" id="2_kxq7y"]
+[ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_i250w"]
+[ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://components/expirable.tscn" id="4_nu3rl"]
+[ext_resource type="PackedScene" uid="uid://d21so7t4ukwd8" path="res://components/floatable.tscn" id="5_l3ydj"]
+[ext_resource type="PackedScene" uid="uid://lvalpavr6ppu" path="res://spawnable.tscn" id="6_1tbk3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24jkt"]
-size = Vector2(63, 31)
+size = Vector2(95, 31)
 
 [sub_resource type="Animation" id="Animation_f44kt"]
 length = 0.001
@@ -49,18 +49,18 @@ _data = {
 &"idle": SubResource("Animation_0f703")
 }
 
-[node name="Soap" type="Area2D"]
-script = ExtResource("1_p0is6")
+[node name="Shampoo" type="Area2D"]
+script = ExtResource("1_kxq7y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_24jkt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_f44kt")
+texture = ExtResource("2_kxq7y")
 hframes = 3
 
-[node name="MoveController" parent="." node_paths=PackedStringArray("object") instance=ExtResource("2_0f703")]
+[node name="MoveController" parent="." node_paths=PackedStringArray("object") instance=ExtResource("3_i250w")]
 object = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -68,10 +68,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_1s1o8")
 }
 
-[node name="Expirable" parent="." node_paths=PackedStringArray("area") instance=ExtResource("4_f44kt")]
+[node name="Expirable" parent="." node_paths=PackedStringArray("area") instance=ExtResource("4_nu3rl")]
 area = NodePath("..")
 
-[node name="Floatable" parent="." instance=ExtResource("5_1s1o8")]
+[node name="Floatable" parent="." instance=ExtResource("5_l3ydj")]
 
-[node name="Spawnable" parent="." instance=ExtResource("6_3v64l")]
-spawn_offset = Vector2(-32, 0)
+[node name="Spawnable" parent="." instance=ExtResource("6_1tbk3")]
+spawn_offset = Vector2(-48, 0)
