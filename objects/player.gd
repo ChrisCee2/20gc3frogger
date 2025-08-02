@@ -77,9 +77,10 @@ func _handle_area_enter(area: Area2D) -> void:
 func _handle_area_exit(area: Area2D) -> void:
 	if area.has_node("Floatable") or area is Water:
 		areas.erase(area)
-		var colliding_water: Area2D = get_colliding_water()
-		if move_controller.is_finished_moving() and colliding_water != null:
-			fail_player(colliding_water)
+		if area.has_node("Floatable"):
+			var water_being_moved_to: Water = desired_area_should_drown()
+			if water_being_moved_to != null:
+				fail_player(water_being_moved_to)
 	if area is PlayArea:
 		fail_player(area)
 
@@ -136,6 +137,17 @@ func is_moving_to_same_area(area_on: Area2D) -> bool:
 		if area_moving_to == area_on:
 			return true
 	return false
+
+# Returns null if no water or if there's a floatable
+func desired_area_should_drown() -> Water:
+	var areas_moving_to: Array[Area2D] = move_to_area.get_overlapping_areas()
+	var water: Water = null
+	for area_moving_to in areas_moving_to:
+		if area_moving_to is Water:
+			water = area_moving_to
+		elif area_moving_to.has_node("Floatable"):
+			return null
+	return water
 
 func update_move_to_area() -> void:
 	move_to_area.global_position = move_controller.desired_position
