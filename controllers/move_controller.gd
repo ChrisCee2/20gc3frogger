@@ -16,7 +16,8 @@ var desired_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	can_move_timer.one_shot = true
-	can_move_timer.wait_time = move_interval
+	if move_interval > 0:
+		can_move_timer.wait_time = move_interval
 	animation_timer.one_shot = true
 	animation_timer.wait_time = animation_interval
 	animation_timer.timeout.connect(_on_move_animation_timeout)

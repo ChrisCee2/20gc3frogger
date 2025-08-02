@@ -16,7 +16,7 @@ var move_buffer: Vector2 = Vector2.ZERO
 var is_active: bool = false
 var areas: Array[Area2D] = []
 
-var fail_object: Object = null # Object failed to
+var fail_object_class: String = "" # Type of the object failed to
 
 # Should be a state machine but whatever
 var animation_states: Dictionary[int, Array] = {
@@ -36,7 +36,7 @@ func _ready() -> void:
 	move_controller.moved.connect(update_animation_state)
 	reset_state()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not is_active:
 		return
 	move_controller.update()
@@ -46,7 +46,7 @@ func _process(delta: float) -> void:
 	and colliding_water != null:
 		fail_player(colliding_water)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not is_active:
 		return
 	move()
@@ -86,12 +86,12 @@ func teleport(new_position: Vector2) -> void:
 
 func activate() -> void:
 	is_active = true
-	monitoring = true
+	set_deferred("monitoring", true)
 	set_deferred("monitorable", true)
 
 func deactivate() -> void:
 	is_active = false
-	monitoring = false
+	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
 
 func _on_player_reached_bed(bed: Bed) -> void:
@@ -103,7 +103,8 @@ func _on_player_reached_bed(bed: Bed) -> void:
 func fail_player(current_fail_object: Area2D) -> void:
 	if is_active:
 		AudioManager.play_audio(fail_audio)
-		fail_object = current_fail_object
+		if current_fail_object.has_method("get_class_name"):
+			fail_object_class = current_fail_object.get_class_name()
 		deactivate()
 		animation_player.play("explode")
 		create_smoke()
@@ -124,7 +125,7 @@ func _on_finished_moving() -> void:
 		fail_player(colliding_water)
 
 func emit_fail() -> void:
-	fail.emit(fail_object)
+	fail.emit(fail_object_class)
 
 func create_smoke() -> void:
 	var new_smoke = smoke.duplicate()

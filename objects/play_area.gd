@@ -5,6 +5,9 @@ class_name PlayArea extends Area2D
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var sprite: Sprite2D = $Sprite2D
 
+func get_class_name() -> String:
+	return "PlayArea"
+
 func _ready() -> void:
 	set_size(size)
 

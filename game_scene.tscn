@@ -87,8 +87,6 @@ max_spawn_time = 3.0
 move_interval = 0.4
 prespawn_amount = 2
 prespawn_start_offset = 5.0
-min_prespawn_offset = 6.0
-max_prespawn_offset = 8.0
 
 [node name="Bubbles" parent="WaterSpawners/Spawner" instance=ExtResource("12_nuflt")]
 
@@ -100,8 +98,6 @@ min_spawn_time = 4.0
 max_spawn_time = 5.0
 move_interval = 0.8
 prespawn_amount = 3
-min_prespawn_offset = 4.0
-max_prespawn_offset = 7.0
 
 [node name="Shampoo" parent="WaterSpawners/Spawner2" instance=ExtResource("11_mlphb")]
 
@@ -114,7 +110,6 @@ max_spawn_time = 7.0
 move_interval = 1.0
 prespawn_amount = 2
 prespawn_start_offset = 5.0
-max_prespawn_offset = 9.0
 
 [node name="Soap" parent="WaterSpawners/Spawner3" instance=ExtResource("10_na8jj")]
 
@@ -127,8 +122,6 @@ max_spawn_time = 3.0
 move_interval = 0.5
 prespawn_amount = 2
 prespawn_start_offset = 6.0
-min_prespawn_offset = 4.0
-max_prespawn_offset = 8.0
 
 [node name="Bubbles" parent="WaterSpawners/Spawner4" instance=ExtResource("12_nuflt")]
 
@@ -140,8 +133,6 @@ min_spawn_time = 2.0
 max_spawn_time = 4.0
 move_interval = 0.8
 prespawn_amount = 2
-min_prespawn_offset = 4.0
-max_prespawn_offset = 7.0
 
 [node name="Soap" parent="WaterSpawners/Spawner5" instance=ExtResource("10_na8jj")]
 
@@ -166,8 +157,6 @@ max_spawn_time = 4.0
 move_interval = 0.4
 move_direction = Vector2(1, 0)
 prespawn_amount = 3
-min_prespawn_offset = 4.0
-max_prespawn_offset = 7.0
 
 [node name="Dog" parent="DogSpawners/Spawner2" instance=ExtResource("11_jv0we")]
 
@@ -178,8 +167,6 @@ object = NodePath("Dog")
 move_interval = 0.7
 prespawn_amount = 3
 prespawn_start_offset = 5.0
-min_prespawn_offset = 4.0
-max_prespawn_offset = 5.0
 
 [node name="Dog" parent="DogSpawners/Spawner3" instance=ExtResource("11_jv0we")]
 
@@ -193,7 +180,6 @@ move_interval = 0.5
 move_direction = Vector2(1, 0)
 prespawn_amount = 3
 prespawn_start_offset = 5.0
-max_prespawn_offset = 8.0
 
 [node name="Dog" parent="DogSpawners/Spawner4" instance=ExtResource("11_jv0we")]
 
@@ -204,7 +190,6 @@ object = NodePath("Dog")
 min_spawn_time = 4.0
 move_interval = 1.0
 prespawn_amount = 4
-max_prespawn_offset = 7.0
 
 [node name="Dog" parent="DogSpawners/Spawner5" instance=ExtResource("11_jv0we")]
 

@@ -18,7 +18,7 @@ func start() -> void:
 	set_deferred("monitorable", true)
 	show()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_started:
 		move_controller.update()
 

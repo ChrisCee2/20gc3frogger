@@ -15,6 +15,9 @@ var current_animation_state: int = 0
 
 var is_started: bool = false
 
+func get_class_name() -> String:
+	return "Dog"
+
 func _ready() -> void:
 	set_deferred("monitorable", false)
 	current_animation_state = 0
@@ -25,7 +28,7 @@ func _ready() -> void:
 	move_controller.moved.connect(update_animation_state)
 	hide()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_started:
 		move_controller.update()
 
