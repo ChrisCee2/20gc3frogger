@@ -86,12 +86,12 @@ func teleport(new_position: Vector2) -> void:
 
 func activate() -> void:
 	is_active = true
-	monitoring = true
+	set_deferred("monitoring", true)
 	set_deferred("monitorable", true)
 
 func deactivate() -> void:
 	is_active = false
-	monitoring = false
+	set_deferred("monitoring", false)
 	set_deferred("monitorable", false)
 
 func _on_player_reached_bed(bed: Bed) -> void:
