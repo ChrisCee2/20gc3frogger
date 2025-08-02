@@ -45,17 +45,17 @@ func finish() -> void:
 	is_finished = true
 	game_end_menu.enable()
 
-func _on_player_fail(fail_object: Object) -> void:
+func _on_player_fail(fail_object_class: String) -> void:
 	lives -= 1
 	lives_ui.remove_life()
 	player.deactivate()
 	player.hide()
 	if lives <= 0:
-		if fail_object is Dog:
+		if fail_object_class == "Dog":
 			end_frame.show_lose_dog()
-		elif fail_object is PlayArea:
+		elif fail_object_class == "PlayArea":
 			end_frame.show_lose_oob()
-		elif fail_object is Water:
+		elif fail_object_class == "Water":
 			end_frame.show_lose_water()
 		finish()
 	else:

@@ -15,6 +15,9 @@ var current_animation_state: int = 0
 
 var is_started: bool = false
 
+func get_class_name() -> String:
+	return "Dog"
+
 func _ready() -> void:
 	set_deferred("monitorable", false)
 	current_animation_state = 0
