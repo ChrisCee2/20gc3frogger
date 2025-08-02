@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bqo34gooi0y7p"]
 
 [ext_resource type="Script" uid="uid://dhw5sfrje0i2t" path="res://objects/shampoo.gd" id="1_kxq7y"]
-[ext_resource type="Texture2D" uid="uid://5ux7oj00pff0" path="res://sprites/sprite_sheets/shampoo.png" id="2_kxq7y"]
+[ext_resource type="Texture2D" uid="uid://dib51xd6unbgw" path="res://sprites/sprite_sheets/shampoo.png" id="2_kxq7y"]
 [ext_resource type="PackedScene" uid="uid://dga1ual85j14i" path="res://controllers/move_controller.tscn" id="3_i250w"]
 [ext_resource type="PackedScene" uid="uid://halaq7co6qj2" path="res://components/expirable.tscn" id="4_nu3rl"]
 [ext_resource type="PackedScene" uid="uid://d21so7t4ukwd8" path="res://components/floatable.tscn" id="5_l3ydj"]
