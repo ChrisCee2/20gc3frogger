@@ -82,7 +82,7 @@ func _on_timeout() -> void:
 
 func _on_move_timer_timeout() -> void:
 	if is_started:
-		for object in spawned_objects.get_children():
-			if object.has_method("move"):
-				object.move(move_direction.normalized())
+		for spawned_object in spawned_objects.get_children():
+			if spawned_object.has_method("move"):
+				spawned_object.move(move_direction.normalized())
 		move_timer.start(move_interval)
