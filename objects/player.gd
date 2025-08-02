@@ -9,6 +9,8 @@ signal reached_bed
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var smoke: Smoke = $Smoke
 
+@onready var fail_audio: AudioStream = preload("res://sfx/fail.wav")
+
 var desired_position = global_position
 var move_buffer: Vector2 = Vector2.ZERO
 var is_active: bool = false
@@ -100,6 +102,7 @@ func _on_player_reached_bed(bed: Bed) -> void:
 
 func fail_player(current_fail_object: Area2D) -> void:
 	if is_active:
+		AudioManager.play_audio(fail_audio)
 		fail_object = current_fail_object
 		deactivate()
 		animation_player.play("explode")

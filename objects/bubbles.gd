@@ -1,5 +1,7 @@
 class_name Bubbles extends Area2D
 
+@onready var pop_audio: AudioStream = preload("res://sfx/pop.wav")
+
 @onready var move_controller: MoveController = $MoveController
 @onready var _animation_player: AnimationPlayer = $AnimationPlayer
 @onready var timer: Timer = $Timer
@@ -15,10 +17,14 @@ var max_inactive_time: float = 3.0
 var min_active_time: float = 2.0
 var max_active_time: float = 5.0
 
+var is_player_on_top: bool = false
+
 func _ready() -> void:
 	move_controller.moved.connect(_on_move)
 	timer.one_shot = true
 	timer.timeout.connect(_on_timeout)
+	area_entered.connect(_handle_area_enter)
+	area_exited.connect(_handle_area_exit)
 	set_deferred("monitorable", is_active)
 	set_deferred("monitoring", is_active)
 	hide()
@@ -60,7 +66,10 @@ func get_start_time() -> float:
 
 func _on_timeout() -> void:
 	if is_active:
-		_animation_player.play("expire")
+		if is_player_on_top:
+			_animation_player.play("expire_with_sound")
+		else:
+			_animation_player.play("expire")
 	else:
 		_animation_player.play_backwards("expire")
 
@@ -80,3 +89,14 @@ func _on_expire_start() -> void:
 
 func move(move_direction: Vector2) -> void:
 	move_controller.shift(move_direction)
+
+func play_pop(pitch: float) -> void:
+	AudioManager.play_audio(pop_audio, pitch)
+
+func _handle_area_enter(area: Area2D) -> void:
+	if area is Player:
+		is_player_on_top = true
+
+func _handle_area_exit(area: Area2D) -> void:
+	if area is Player:
+		is_player_on_top = false
