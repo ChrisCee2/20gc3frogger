@@ -148,7 +148,7 @@ max_prespawn_offset = 7.0
 [node name="DogSpawners" type="Node" parent="."]
 
 [node name="Spawner" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
-position = Vector2(464, 272)
+position = Vector2(448, 272)
 autostart = true
 object = NodePath("Dog")
 max_spawn_time = 5.0
@@ -158,7 +158,7 @@ prespawn_amount = 4
 [node name="Dog" parent="DogSpawners/Spawner" instance=ExtResource("11_jv0we")]
 
 [node name="Spawner2" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
-position = Vector2(-16, 304)
+position = Vector2(0, 304)
 autostart = true
 object = NodePath("Dog")
 min_spawn_time = 2.0
@@ -172,7 +172,7 @@ max_prespawn_offset = 7.0
 [node name="Dog" parent="DogSpawners/Spawner2" instance=ExtResource("11_jv0we")]
 
 [node name="Spawner3" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
-position = Vector2(464, 336)
+position = Vector2(448, 336)
 autostart = true
 object = NodePath("Dog")
 move_interval = 0.7
@@ -184,7 +184,7 @@ max_prespawn_offset = 5.0
 [node name="Dog" parent="DogSpawners/Spawner3" instance=ExtResource("11_jv0we")]
 
 [node name="Spawner4" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
-position = Vector2(-16, 368)
+position = Vector2(0, 368)
 autostart = true
 object = NodePath("Dog")
 min_spawn_time = 2.0
@@ -198,7 +198,7 @@ max_prespawn_offset = 8.0
 [node name="Dog" parent="DogSpawners/Spawner4" instance=ExtResource("11_jv0we")]
 
 [node name="Spawner5" parent="DogSpawners" node_paths=PackedStringArray("object") instance=ExtResource("9_78j2m")]
-position = Vector2(464, 400)
+position = Vector2(448, 400)
 autostart = true
 object = NodePath("Dog")
 min_spawn_time = 4.0
