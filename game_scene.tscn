@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://di4c40pm2o71b" path="res://objects/bed.tscn" id="13_if5p2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8pr8v"]
-size = Vector2(447, 159)
+size = Vector2(447, 154)
 
 [node name="TestScene" type="Node2D"]
 
